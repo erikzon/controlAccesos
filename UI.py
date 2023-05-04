@@ -18,7 +18,7 @@ import wx.grid
 class autenticacionFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Autenticación", pos = wx.DefaultPosition, size = wx.Size( 388,186 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Autenticación", pos = wx.DefaultPosition, size = wx.Size( 491,227 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOWTEXT ) )
@@ -29,7 +29,14 @@ class autenticacionFrame ( wx.Frame ):
         self.m_staticText4 = wx.StaticText( self, wx.ID_ANY, u"Autenticacion", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText4.Wrap( -1 )
 
-        bSizer2.Add( self.m_staticText4, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.ALL, 5 )
+        bSizer2.Add( self.m_staticText4, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+        self.m_staticTextMensajeError = wx.StaticText( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticTextMensajeError.Wrap( -1 )
+
+        self.m_staticTextMensajeError.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_BACKGROUND ) )
+
+        bSizer2.Add( self.m_staticTextMensajeError, 0, wx.ALL, 5 )
 
         gbSizer5 = wx.GridBagSizer( 0, 0 )
         gbSizer5.SetFlexibleDirection( wx.VERTICAL )
@@ -38,28 +45,26 @@ class autenticacionFrame ( wx.Frame ):
         self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, u"Usuario", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText6.Wrap( -1 )
 
-        gbSizer5.Add( self.m_staticText6, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL|wx.LEFT|wx.RESERVE_SPACE_EVEN_IF_HIDDEN|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+        gbSizer5.Add( self.m_staticText6, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL|wx.LEFT|wx.RESERVE_SPACE_EVEN_IF_HIDDEN|wx.ALIGN_RIGHT, 5 )
 
-        self.m_textCtrlUsuario = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-        self.m_textCtrlUsuario.SetMinSize( wx.Size( 100,-1 ) )
-
-        gbSizer5.Add( self.m_textCtrlUsuario, wx.GBPosition( 1, 2 ), wx.GBSpan( 1, 2 ), wx.ALIGN_CENTER_VERTICAL|wx.ALL, 5 )
+        self.m_textCtrlUsuario = wx.TextCtrl( self, wx.ID_ANY, u"administradorAccesos", wx.DefaultPosition, wx.Size( 240,-1 ), 0 )
+        self.m_textCtrlUsuario.SetMaxLength( 150 )
+        gbSizer5.Add( self.m_textCtrlUsuario, wx.GBPosition( 1, 2 ), wx.GBSpan( 1, 4 ), wx.ALL, 5 )
 
         self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"Contrasena", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText7.Wrap( -1 )
 
-        gbSizer5.Add( self.m_staticText7, wx.GBPosition( 2, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+        gbSizer5.Add( self.m_staticText7, wx.GBPosition( 2, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-        self.m_textCtrlContrasena = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_PASSWORD )
-        self.m_textCtrlContrasena.SetMinSize( wx.Size( 100,-1 ) )
+        self.m_textCtrlContrasena = wx.TextCtrl( self, wx.ID_ANY, u"4125", wx.DefaultPosition, wx.Size( 240,-1 ), wx.TE_PASSWORD )
+        self.m_textCtrlContrasena.SetMaxLength( 150 )
+        gbSizer5.Add( self.m_textCtrlContrasena, wx.GBPosition( 2, 2 ), wx.GBSpan( 1, 4 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-        gbSizer5.Add( self.m_textCtrlContrasena, wx.GBPosition( 2, 2 ), wx.GBSpan( 1, 2 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
-
-        self.m_buttonLogin = wx.Button( self, wx.ID_ANY, u"Acceder", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer5.Add( self.m_buttonLogin, wx.GBPosition( 3, 1 ), wx.GBSpan( 1, 2 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
+        self.m_buttonLogin = wx.Button( self, wx.ID_ANY, u"Acceder", wx.DefaultPosition, wx.Size( 150,-1 ), 0 )
+        gbSizer5.Add( self.m_buttonLogin, wx.GBPosition( 3, 1 ), wx.GBSpan( 1, 5 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
 
-        bSizer2.Add( gbSizer5, 0, wx.EXPAND, 5 )
+        bSizer2.Add( gbSizer5, 1, wx.EXPAND, 5 )
 
 
         self.SetSizer( bSizer2 )
@@ -90,7 +95,7 @@ class autenticacionFrame ( wx.Frame ):
 class listadoFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Usuarios", pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Usuarios", pos = wx.DefaultPosition, size = wx.Size( 922,611 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 244, 244, 244 ) )
@@ -114,10 +119,10 @@ class listadoFrame ( wx.Frame ):
         gbSizer9.SetFlexibleDirection( wx.BOTH )
         gbSizer9.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-        self.m_gridUsuarios = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_gridUsuarios = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.Size( 900,500 ), 0 )
 
         # Grid
-        self.m_gridUsuarios.CreateGrid( 5, 5 )
+        self.m_gridUsuarios.CreateGrid( 10, 4 )
         self.m_gridUsuarios.EnableEditing( True )
         self.m_gridUsuarios.EnableGridLines( True )
         self.m_gridUsuarios.EnableDragGridSize( False )
@@ -129,6 +134,14 @@ class listadoFrame ( wx.Frame ):
         self.m_gridUsuarios.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
         # Rows
+        self.m_gridUsuarios.SetRowSize( 0, 24 )
+        self.m_gridUsuarios.SetRowSize( 1, 21 )
+        self.m_gridUsuarios.SetRowSize( 2, 21 )
+        self.m_gridUsuarios.SetRowSize( 3, 21 )
+        self.m_gridUsuarios.SetRowSize( 4, 21 )
+        self.m_gridUsuarios.SetRowSize( 5, 21 )
+        self.m_gridUsuarios.SetRowSize( 6, 21 )
+        self.m_gridUsuarios.AutoSizeRows()
         self.m_gridUsuarios.EnableDragRowSize( True )
         self.m_gridUsuarios.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
 
@@ -136,10 +149,10 @@ class listadoFrame ( wx.Frame ):
 
         # Cell Defaults
         self.m_gridUsuarios.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-        gbSizer9.Add( self.m_gridUsuarios, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        gbSizer9.Add( self.m_gridUsuarios, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 4 ), wx.ALL|wx.EXPAND|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
 
-        gbSizer4.Add( gbSizer9, wx.GBPosition( 2, 0 ), wx.GBSpan( 3, 3 ), wx.EXPAND, 5 )
+        gbSizer4.Add( gbSizer9, wx.GBPosition( 2, 0 ), wx.GBSpan( 5, 5 ), wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL|wx.EXPAND, 5 )
 
 
         self.SetSizer( gbSizer4 )
@@ -175,12 +188,12 @@ class detalleFrame ( wx.Frame ):
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
 
-        gbSizer3 = wx.GridBagSizer( 0, 0 )
-        gbSizer3.SetFlexibleDirection( wx.BOTH )
-        gbSizer3.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+        gbSizer5 = wx.GridBagSizer( 0, 0 )
+        gbSizer5.SetFlexibleDirection( wx.BOTH )
+        gbSizer5.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 
-        self.SetSizer( gbSizer3 )
+        self.SetSizer( gbSizer5 )
         self.Layout()
 
         self.Centre( wx.BOTH )
