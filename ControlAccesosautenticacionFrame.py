@@ -3,6 +3,8 @@
 import wx
 import UI
 import pymysql.cursors
+import config
+from ControlAccesoslistadoFrame import ControlAccesoslistadoFrame
 
 
 # Implementing autenticacionFrame
@@ -24,13 +26,6 @@ class ControlAccesosautenticacionFrame(UI.autenticacionFrame):
                 database="accesos",
                 cursorclass=pymysql.cursors.DictCursor,
             )
-            # connection = pymysql.connect(
-            #     host="localhost",
-            #     user="administradorAccesos",
-            #     password="4125",
-            #     database="accesos",
-            #     cursorclass=pymysql.cursors.DictCursor,
-            # )
             with connection:
                 with connection.cursor() as cursor:
                     sql = "SELECT Insert_priv FROM mysql.user WHERE User = %s LIMIT 1;"
@@ -39,13 +34,13 @@ class ControlAccesosautenticacionFrame(UI.autenticacionFrame):
 
             # Verificar si se encontró un usuario con las credenciales ingresadas
             if result:
-                global usuario_actual
-                global contrasena_actual
-                usuario_actual = self.m_textCtrlUsuario.GetValue()
-                contrasena_actual = self.m_textCtrlContrasena.GetValue()
+                config.usuario_actual = self.m_textCtrlUsuario.GetValue()
+                config.contrasena_actual = self.m_textCtrlContrasena.GetValue()
+                if result and result["Insert_priv"] == "Y":
+                    config.admin = True
                 print(result)
                 self.Close()
-                frame = UI.listadoFrame(None)
+                frame = ControlAccesoslistadoFrame(None)
                 frame.Show(True)
             else:
                 print("Credenciales inválidas.")

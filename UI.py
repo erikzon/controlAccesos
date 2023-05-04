@@ -161,6 +161,7 @@ class listadoFrame ( wx.Frame ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_SHOW, self.listarUsuarios )
         self.m_buttonBuscar.Bind( wx.EVT_BUTTON, self.Buscar )
         self.m_gridUsuarios.Bind( wx.grid.EVT_GRID_CELL_LEFT_CLICK, self.mostrarDetalle )
 
@@ -169,6 +170,9 @@ class listadoFrame ( wx.Frame ):
 
 
     # Virtual event handlers, override them in your derived class
+    def listarUsuarios( self, event ):
+        event.Skip()
+
     def Buscar( self, event ):
         event.Skip()
 

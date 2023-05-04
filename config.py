@@ -1,0 +1,3 @@
+global usuario_actual
+global contrasena_actual
+global admin
