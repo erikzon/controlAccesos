@@ -126,7 +126,7 @@
                 </object>
                 <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
-                    <property name="flag">wxALL|wxALIGN_CENTER_HORIZONTAL</property>
+                    <property name="flag">wxALL</property>
                     <property name="proportion">0</property>
                     <object class="wxStaticText" expanded="1">
                         <property name="BottomDockable">1</property>
@@ -325,7 +325,7 @@
                                 <property name="validator_style">wxFILTER_NONE</property>
                                 <property name="validator_type">wxDefaultValidator</property>
                                 <property name="validator_variable"></property>
-                                <property name="value"></property>
+                                <property name="value">administradorAccesos</property>
                                 <property name="window_extra_style"></property>
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
@@ -456,7 +456,7 @@
                                 <property name="validator_style">wxFILTER_NONE</property>
                                 <property name="validator_type">wxDefaultValidator</property>
                                 <property name="validator_variable"></property>
-                                <property name="value"></property>
+                                <property name="value">4125</property>
                                 <property name="window_extra_style"></property>
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
@@ -571,6 +571,7 @@
             <property name="window_name"></property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <property name="xrc_skip_sizer">1</property>
+            <event name="OnShow">listarUsuarios</event>
             <object class="wxGridBagSizer" expanded="1">
                 <property name="empty_cell_size"></property>
                 <property name="flexible_direction">wxBOTH</property>
@@ -841,7 +842,7 @@
                                 <property name="col_label_size"></property>
                                 <property name="col_label_values"></property>
                                 <property name="col_label_vert_alignment">wxALIGN_CENTER</property>
-                                <property name="cols">4</property>
+                                <property name="cols">5</property>
                                 <property name="column_sizes"></property>
                                 <property name="context_help"></property>
                                 <property name="context_menu">1</property>

@@ -122,7 +122,7 @@ class listadoFrame ( wx.Frame ):
         self.m_gridUsuarios = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.Size( 900,500 ), 0 )
 
         # Grid
-        self.m_gridUsuarios.CreateGrid( 10, 4 )
+        self.m_gridUsuarios.CreateGrid( 10, 5 )
         self.m_gridUsuarios.EnableEditing( True )
         self.m_gridUsuarios.EnableGridLines( True )
         self.m_gridUsuarios.EnableDragGridSize( False )

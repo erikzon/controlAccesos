@@ -38,6 +38,8 @@ class ControlAccesosautenticacionFrame(UI.autenticacionFrame):
                 config.contrasena_actual = self.m_textCtrlContrasena.GetValue()
                 if result and result["Insert_priv"] == "Y":
                     config.admin = True
+                else:
+                    config.admin = False
                 print(result)
                 self.Close()
                 frame = ControlAccesoslistadoFrame(None)

@@ -4,6 +4,7 @@ import wx
 import UI
 import pymysql.cursors
 import config
+from ControlAccesosdetalleFrame import ControlAccesosdetalleFrame
 
 
 # Implementing listadoFrame
@@ -32,6 +33,18 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
 
             if result:
                 print(result)
+                self.m_gridUsuarios.SetColLabelValue(0, "idusuario")
+                self.m_gridUsuarios.SetColLabelValue(1, "nombreCompleto")
+                self.m_gridUsuarios.SetColLabelValue(2, "usuarioAD")
+                self.m_gridUsuarios.SetColLabelValue(3, "area")
+                self.m_gridUsuarios.SetColLabelValue(4, "pais")
+                for i, result in enumerate(result):
+                    self.m_gridUsuarios.SetCellValue(i, 0, str(result["idusuario"]))
+                    self.m_gridUsuarios.SetCellValue(i, 1, result["nombreCompleto"])
+                    self.m_gridUsuarios.SetCellValue(i, 2, result["usuarioAD"])
+                    self.m_gridUsuarios.SetCellValue(i, 3, result["area"])
+                    self.m_gridUsuarios.SetCellValue(i, 4, result["pais"])
+                self.m_gridUsuarios.AutoSizeColumns()
             else:
                 print("Error al listarUsuarios")
         except Exception as e:
@@ -42,5 +55,13 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
         pass
 
     def mostrarDetalle(self, event):
-        # TODO: Implement mostrarDetalle
-        pass
+        selected_row = self.m_gridUsuarios.GetSelectedRows()[0]
+
+        # Obtener el valor de la columna "usuarioAD" correspondiente a la fila seleccionada
+        usuario_ad = self.m_gridUsuarios.GetCellValue(selected_row, 2)
+
+        # Imprimir el valor obtenido
+        print(usuario_ad)
+        self.Close()
+        frame = ControlAccesosdetalleFrame(None)
+        frame.Show(True)
