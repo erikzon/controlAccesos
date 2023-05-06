@@ -4,7 +4,6 @@ import wx
 import UI
 import pymysql.cursors
 import config
-from ControlAccesoslistadoFrame import ControlAccesoslistadoFrame
 
 
 # Implementing autenticacionFrame
@@ -41,6 +40,8 @@ class ControlAccesosautenticacionFrame(UI.autenticacionFrame):
                 else:
                     config.admin = False
                 print(result)
+                from ControlAccesoslistadoFrame import ControlAccesoslistadoFrame
+
                 self.Close()
                 frame = ControlAccesoslistadoFrame(None)
                 frame.Show(True)

@@ -38,13 +38,50 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
                 self.m_gridUsuarios.SetColLabelValue(2, "usuarioAD")
                 self.m_gridUsuarios.SetColLabelValue(3, "area")
                 self.m_gridUsuarios.SetColLabelValue(4, "pais")
-                for i, result in enumerate(result):
-                    self.m_gridUsuarios.SetCellValue(i, 0, str(result["idusuario"]))
-                    self.m_gridUsuarios.SetCellValue(i, 1, result["nombreCompleto"])
-                    self.m_gridUsuarios.SetCellValue(i, 2, result["usuarioAD"])
-                    self.m_gridUsuarios.SetCellValue(i, 3, result["area"])
-                    self.m_gridUsuarios.SetCellValue(i, 4, result["pais"])
+                for i, perro in enumerate(result):
+                    self.m_gridUsuarios.SetCellValue(i, 0, str(perro["idusuario"]))
+                    self.m_gridUsuarios.SetCellValue(i, 1, perro["nombreCompleto"])
+                    self.m_gridUsuarios.SetCellValue(i, 2, perro["usuarioAD"])
+                    self.m_gridUsuarios.SetCellValue(i, 3, perro["area"])
+                    self.m_gridUsuarios.SetCellValue(i, 4, perro["pais"])
                 self.m_gridUsuarios.AutoSizeColumns()
+
+                # PROBANDO CON UN listcontroldelauber
+
+                # Agregar columnas al DataViewListCtrl
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn(
+                    "ID Usuario", "idusuario"
+                )
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn(
+                    "Nombre Completo", "nombreCompleto"
+                )
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn(
+                    "Usuario AD", "usuarioAD"
+                )
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn("Área", "area")
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn("País", "pais")
+
+                for j, miau in enumerate(result):
+                    # print(result_row["nombreCompleto"])
+                    self.m_dataViewListCtrlUsuarios.AppendItem(
+                        [
+                            str(miau["idusuario"]),
+                            miau["nombreCompleto"],
+                            miau["usuarioAD"],
+                            miau["area"],
+                            miau["pais"],
+                        ]
+                    )
+                    # self.m_dataViewListCtrlUsuarios.AppendItem(
+                    #     [
+                    #         str(result_row["idusuario"]),
+                    #         result_row["nombreCompleto"],
+                    #         result_row["usuarioAD"],
+                    #         result_row["area"],
+                    #         result_row["pais"],
+                    #     ]
+                    # )
+
             else:
                 print("Error al listarUsuarios")
         except Exception as e:

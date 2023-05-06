@@ -2,9 +2,36 @@
 
 import wx
 import UI
+import pymysql.cursors
+import config
+
 
 # Implementing detalleFrame
-class ControlAccesosdetalleFrame( UI.detalleFrame ):
-	def __init__( self, parent ):
-		UI.detalleFrame.__init__( self, parent )
+class ControlAccesosdetalleFrame(UI.detalleFrame):
+    def __init__(self, parent):
+        UI.detalleFrame.__init__(self, parent)
 
+    # Handlers for detalleFrame events.
+    def obtenerDetalles(self, event):
+        # TODO: Implement obtenerDetalles
+        pass
+
+    def regresar(self, event):
+        from ControlAccesoslistadoFrame import ControlAccesoslistadoFrame
+
+        self.Close()
+        frame = ControlAccesoslistadoFrame(None)
+        frame.Show(True)
+        pass
+
+    def toggleActiveDirectory(self, event):
+        # TODO: Implement toggleActiveDirectory
+        pass
+
+    def toggleAnydesk(self, event):
+        # TODO: Implement toggleAnydesk
+        pass
+
+    def toggleGoogleDrive(self, event):
+        # TODO: Implement toggleGoogleDrive
+        pass

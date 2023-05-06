@@ -10,6 +10,7 @@
 import wx
 import wx.xrc
 import wx.grid
+import wx.dataview
 
 ###########################################################################
 ## Class autenticacionFrame
@@ -95,7 +96,7 @@ class autenticacionFrame ( wx.Frame ):
 class listadoFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Usuarios", pos = wx.DefaultPosition, size = wx.Size( 922,611 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Usuarios", pos = wx.DefaultPosition, size = wx.Size( 1206,1090 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 244, 244, 244 ) )
@@ -151,6 +152,11 @@ class listadoFrame ( wx.Frame ):
         self.m_gridUsuarios.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
         gbSizer9.Add( self.m_gridUsuarios, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 4 ), wx.ALL|wx.EXPAND|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
+        self.m_dataViewListCtrlUsuarios = wx.dataview.DataViewListCtrl( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_dataViewListCtrlUsuarios.SetMinSize( wx.Size( 500,500 ) )
+
+        gbSizer9.Add( self.m_dataViewListCtrlUsuarios, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
 
         gbSizer4.Add( gbSizer9, wx.GBPosition( 2, 0 ), wx.GBSpan( 5, 5 ), wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL|wx.EXPAND, 5 )
 
@@ -187,7 +193,7 @@ class listadoFrame ( wx.Frame ):
 class detalleFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Detalle", pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Detalle", pos = wx.DefaultPosition, size = wx.Size( 500,288 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
@@ -196,13 +202,76 @@ class detalleFrame ( wx.Frame ):
         gbSizer5.SetFlexibleDirection( wx.BOTH )
         gbSizer5.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
+        self.m_staticText7 = wx.StaticText( self, wx.ID_ANY, u"Nombre de Usuario en Active Directory:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText7.Wrap( -1 )
+
+        gbSizer5.Add( self.m_staticText7, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Regresar", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer5.Add( self.m_buttonRegresar, wx.GBPosition( 5, 2 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticTextNombreUsuario = wx.StaticText( self, wx.ID_ANY, u"<nombre usuario>", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticTextNombreUsuario.Wrap( -1 )
+
+        gbSizer5.Add( self.m_staticTextNombreUsuario, wx.GBPosition( 0, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Nombre Completo:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText8.Wrap( -1 )
+
+        gbSizer5.Add( self.m_staticText8, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticText9NombreCopleto = wx.StaticText( self, wx.ID_ANY, u"<nombre completo>", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText9NombreCopleto.Wrap( -1 )
+
+        gbSizer5.Add( self.m_staticText9NombreCopleto, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        gbSizer51 = wx.GridBagSizer( 0, 0 )
+        gbSizer51.SetFlexibleDirection( wx.BOTH )
+        gbSizer51.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+        self.m_checkBoxToggleActiveDirectory = wx.CheckBox( self, wx.ID_ANY, u"Activar/Desactivar Usuario en Active Directory", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer51.Add( self.m_checkBoxToggleActiveDirectory, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 2 ), wx.ALL, 5 )
+
+        self.m_checkBoxToggleAnydesk = wx.CheckBox( self, wx.ID_ANY, u"Anydesk", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer51.Add( self.m_checkBoxToggleAnydesk, wx.GBPosition( 2, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_checkBoxToggleGoogleDrive = wx.CheckBox( self, wx.ID_ANY, u"Google Drive", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer51.Add( self.m_checkBoxToggleGoogleDrive, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+
+        gbSizer5.Add( gbSizer51, wx.GBPosition( 2, 0 ), wx.GBSpan( 1, 1 ), wx.EXPAND, 5 )
+
 
         self.SetSizer( gbSizer5 )
         self.Layout()
 
         self.Centre( wx.BOTH )
 
+        # Connect Events
+        self.Bind( wx.EVT_SHOW, self.obtenerDetalles )
+        self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.regresar )
+        self.m_checkBoxToggleActiveDirectory.Bind( wx.EVT_CHECKBOX, self.toggleActiveDirectory )
+        self.m_checkBoxToggleAnydesk.Bind( wx.EVT_CHECKBOX, self.toggleAnydesk )
+        self.m_checkBoxToggleGoogleDrive.Bind( wx.EVT_CHECKBOX, self.toggleGoogleDrive )
+
     def __del__( self ):
         pass
+
+
+    # Virtual event handlers, override them in your derived class
+    def obtenerDetalles( self, event ):
+        event.Skip()
+
+    def regresar( self, event ):
+        event.Skip()
+
+    def toggleActiveDirectory( self, event ):
+        event.Skip()
+
+    def toggleAnydesk( self, event ):
+        event.Skip()
+
+    def toggleGoogleDrive( self, event ):
+        event.Skip()
 
 
