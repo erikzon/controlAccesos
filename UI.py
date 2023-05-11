@@ -96,7 +96,7 @@ class autenticacionFrame ( wx.Frame ):
 class listadoFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Usuarios", pos = wx.DefaultPosition, size = wx.Size( 1206,1090 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Usuarios", pos = wx.DefaultPosition, size = wx.Size( 949,604 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 244, 244, 244 ) )
@@ -104,6 +104,9 @@ class listadoFrame ( wx.Frame ):
         gbSizer4 = wx.GridBagSizer( 0, 0 )
         gbSizer4.SetFlexibleDirection( wx.BOTH )
         gbSizer4.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+        self.m_button4CerrarSesion = wx.Button( self, wx.ID_ANY, u"Cerrar Sesion", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer4.Add( self.m_button4CerrarSesion, wx.GBPosition( 0, 4 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Busqueda por nombre usuario", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText8.Wrap( -1 )
@@ -120,7 +123,7 @@ class listadoFrame ( wx.Frame ):
         gbSizer9.SetFlexibleDirection( wx.BOTH )
         gbSizer9.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-        self.m_gridUsuarios = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.Size( 900,500 ), 0 )
+        self.m_gridUsuarios = wx.grid.Grid( self, wx.ID_ANY, wx.DefaultPosition, wx.Size( 900,200 ), 0 )
 
         # Grid
         self.m_gridUsuarios.CreateGrid( 10, 5 )
@@ -153,7 +156,7 @@ class listadoFrame ( wx.Frame ):
         gbSizer9.Add( self.m_gridUsuarios, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 4 ), wx.ALL|wx.EXPAND|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
         self.m_dataViewListCtrlUsuarios = wx.dataview.DataViewListCtrl( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
-        self.m_dataViewListCtrlUsuarios.SetMinSize( wx.Size( 500,500 ) )
+        self.m_dataViewListCtrlUsuarios.SetMinSize( wx.Size( 500,300 ) )
 
         gbSizer9.Add( self.m_dataViewListCtrlUsuarios, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
@@ -168,6 +171,7 @@ class listadoFrame ( wx.Frame ):
 
         # Connect Events
         self.Bind( wx.EVT_SHOW, self.listarUsuarios )
+        self.m_button4CerrarSesion.Bind( wx.EVT_BUTTON, self.CerrarSesion )
         self.m_buttonBuscar.Bind( wx.EVT_BUTTON, self.Buscar )
         self.m_gridUsuarios.Bind( wx.grid.EVT_GRID_CELL_LEFT_CLICK, self.mostrarDetalle )
 
@@ -177,6 +181,9 @@ class listadoFrame ( wx.Frame ):
 
     # Virtual event handlers, override them in your derived class
     def listarUsuarios( self, event ):
+        event.Skip()
+
+    def CerrarSesion( self, event ):
         event.Skip()
 
     def Buscar( self, event ):

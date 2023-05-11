@@ -103,3 +103,11 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
         self.Close()
         frame = ControlAccesosdetalleFrame(None)
         frame.Show(True)
+
+    def CerrarSesion(self, event):
+        from ControlAccesosautenticacionFrame import ControlAccesosautenticacionFrame
+
+        config.limpiar()
+        self.Close()
+        frame = ControlAccesosautenticacionFrame(None)
+        frame.Show(True)
