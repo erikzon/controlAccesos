@@ -99,6 +99,7 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
 
         # Imprimir el valor obtenido
         print(usuario_ad)
+        config.usuarioSeleccionado = usuario_ad
         self.Close()
         frame = ControlAccesosdetalleFrame(None)
         frame.Show(True)
