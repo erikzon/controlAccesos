@@ -32,55 +32,22 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
             result = cursor.fetchall()
 
             if result:
-                print(result)
-                self.m_gridUsuarios.SetColLabelValue(0, "idusuario")
-                self.m_gridUsuarios.SetColLabelValue(1, "nombreCompleto")
-                self.m_gridUsuarios.SetColLabelValue(2, "usuarioAD")
-                self.m_gridUsuarios.SetColLabelValue(3, "area")
-                self.m_gridUsuarios.SetColLabelValue(4, "pais")
-                for i, perro in enumerate(result):
-                    self.m_gridUsuarios.SetCellValue(i, 0, str(perro["idusuario"]))
-                    self.m_gridUsuarios.SetCellValue(i, 1, perro["nombreCompleto"])
-                    self.m_gridUsuarios.SetCellValue(i, 2, perro["usuarioAD"])
-                    self.m_gridUsuarios.SetCellValue(i, 3, perro["area"])
-                    self.m_gridUsuarios.SetCellValue(i, 4, perro["pais"])
-                self.m_gridUsuarios.AutoSizeColumns()
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn("idusuario")
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn("nombreCompleto")
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn("usuarioAD")
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn("area")
+                self.m_dataViewListCtrlUsuarios.AppendTextColumn("pais")
 
-                # PROBANDO CON UN listcontroldelauber
-
-                # Agregar columnas al DataViewListCtrl
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn(
-                    "ID Usuario", "idusuario"
-                )
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn(
-                    "Nombre Completo", "nombreCompleto"
-                )
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn(
-                    "Usuario AD", "usuarioAD"
-                )
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn("Área", "area")
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn("País", "pais")
-
-                for j, miau in enumerate(result):
-                    # print(result_row["nombreCompleto"])
+                for j, item in enumerate(result):
                     self.m_dataViewListCtrlUsuarios.AppendItem(
                         [
-                            str(miau["idusuario"]),
-                            miau["nombreCompleto"],
-                            miau["usuarioAD"],
-                            miau["area"],
-                            miau["pais"],
+                            str(item["idusuario"]),
+                            item["nombreCompleto"],
+                            item["usuarioAD"],
+                            item["area"],
+                            item["pais"],
                         ]
                     )
-                    # self.m_dataViewListCtrlUsuarios.AppendItem(
-                    #     [
-                    #         str(result_row["idusuario"]),
-                    #         result_row["nombreCompleto"],
-                    #         result_row["usuarioAD"],
-                    #         result_row["area"],
-                    #         result_row["pais"],
-                    #     ]
-                    # )
 
             else:
                 print("Error al listarUsuarios")
@@ -92,13 +59,9 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
         pass
 
     def mostrarDetalle(self, event):
-        selected_row = self.m_gridUsuarios.GetSelectedRows()[0]
+        selected_row = self.m_dataViewListCtrlUsuarios.GetSelectedRow()
+        usuario_ad = self.m_dataViewListCtrlUsuarios.GetValue(selected_row, 2)
 
-        # Obtener el valor de la columna "usuarioAD" correspondiente a la fila seleccionada
-        usuario_ad = self.m_gridUsuarios.GetCellValue(selected_row, 2)
-
-        # Imprimir el valor obtenido
-        print(usuario_ad)
         config.usuarioSeleccionado = usuario_ad
         self.Close()
         frame = ControlAccesosdetalleFrame(None)
