@@ -61,8 +61,9 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
     def mostrarDetalle(self, event):
         selected_row = self.m_dataViewListCtrlUsuarios.GetSelectedRow()
         usuario_ad = self.m_dataViewListCtrlUsuarios.GetValue(selected_row, 2)
-
+        usuario_id = self.m_dataViewListCtrlUsuarios.GetValue(selected_row, 0)
         config.usuarioSeleccionado = usuario_ad
+        config.IDusuarioSeleccionado = usuario_id
         self.Close()
         frame = ControlAccesosdetalleFrame(None)
         frame.Show(True)

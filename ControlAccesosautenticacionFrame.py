@@ -39,7 +39,6 @@ class ControlAccesosautenticacionFrame(UI.autenticacionFrame):
                     config.admin = True
                 else:
                     config.admin = False
-                print(result)
                 from ControlAccesoslistadoFrame import ControlAccesoslistadoFrame
 
                 self.Close()

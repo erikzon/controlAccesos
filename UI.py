@@ -206,12 +206,6 @@ class detalleFrame ( wx.Frame ):
         self.m_checkBoxToggleActiveDirectory = wx.CheckBox( self, wx.ID_ANY, u"Activar/Desactivar Usuario en Active Directory", wx.DefaultPosition, wx.DefaultSize, 0 )
         gbSizer51.Add( self.m_checkBoxToggleActiveDirectory, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 2 ), wx.ALL, 5 )
 
-        self.m_checkBoxToggleAnydesk = wx.CheckBox( self, wx.ID_ANY, u"Anydesk", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer51.Add( self.m_checkBoxToggleAnydesk, wx.GBPosition( 2, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
-
-        self.m_checkBoxToggleGoogleDrive = wx.CheckBox( self, wx.ID_ANY, u"Google Drive", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer51.Add( self.m_checkBoxToggleGoogleDrive, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
-
 
         gbSizer5.Add( gbSizer51, wx.GBPosition( 2, 0 ), wx.GBSpan( 1, 1 ), wx.EXPAND, 5 )
 
@@ -225,8 +219,6 @@ class detalleFrame ( wx.Frame ):
         self.Bind( wx.EVT_SHOW, self.obtenerDetalles )
         self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.regresar )
         self.m_checkBoxToggleActiveDirectory.Bind( wx.EVT_CHECKBOX, self.toggleActiveDirectory )
-        self.m_checkBoxToggleAnydesk.Bind( wx.EVT_CHECKBOX, self.toggleAnydesk )
-        self.m_checkBoxToggleGoogleDrive.Bind( wx.EVT_CHECKBOX, self.toggleGoogleDrive )
 
     def __del__( self ):
         pass
@@ -240,12 +232,6 @@ class detalleFrame ( wx.Frame ):
         event.Skip()
 
     def toggleActiveDirectory( self, event ):
-        event.Skip()
-
-    def toggleAnydesk( self, event ):
-        event.Skip()
-
-    def toggleGoogleDrive( self, event ):
         event.Skip()
 
 

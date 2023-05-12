@@ -11,13 +11,87 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
     def __init__(self, parent):
         UI.detalleFrame.__init__(self, parent)
 
+    def OnCheckBox(self, event):
+        checkbox = event.GetEventObject()
+        nombre_acceso = checkbox.GetLabel()
+        valor_acceso = checkbox.GetValue()
+        try:
+            connection = pymysql.connect(
+                host="localhost",
+                user=config.usuario_actual,
+                password=config.contrasena_actual,
+                database="accesos",
+                cursorclass=pymysql.cursors.DictCursor,
+                autocommit=True,
+            )
+            with connection:
+                with connection.cursor() as cursor:
+                    sql = """UPDATE usuario_acceso 
+                            SET valor_acceso = %s
+                            WHERE idusuario = %s AND id_acceso = (
+                            SELECT id_acceso FROM acceso WHERE nombre_acceso = %s);
+                            """
+                    cursor.execute(
+                        sql,
+                        (
+                            int(valor_acceso),
+                            config.IDusuarioSeleccionado,
+                            nombre_acceso,
+                        ),
+                    )
+                    cursor.close()
+
+                connection.commit()
+        except Exception as e:
+            print(f"Error al actualizar permiso: {str(e)}")
+
     # Handlers for detalleFrame events.
     def obtenerDetalles(self, event):
+        try:
+            connection = pymysql.connect(
+                host="localhost",
+                user=config.usuario_actual,
+                password=config.contrasena_actual,
+                database="accesos",
+                cursorclass=pymysql.cursors.DictCursor,
+            )
+            with connection:
+                with connection.cursor() as cursor:
+                    sql = """SELECT p.nombre_acceso, up.valor_acceso
+                            FROM usuario AS u
+                            JOIN usuario_acceso AS up ON u.idusuario = up.idusuario
+                            JOIN acceso AS p ON up.id_acceso = p.id_acceso
+                            WHERE u.usuarioAD = %s;"""
+                    cursor.execute(sql, config.usuarioSeleccionado)
+            result = cursor.fetchall()
+
+            gbSizerDinamicoAccesos = wx.GridBagSizer(0, 0)
+            gbSizerDinamicoAccesos.SetFlexibleDirection(wx.BOTH)
+            gbSizerDinamicoAccesos.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
+            for i, acceso in enumerate(result):
+                nombre = acceso["nombre_acceso"]
+                valor = acceso["valor_acceso"]
+                checkbox = wx.CheckBox(
+                    self, wx.ID_ANY, nombre, wx.DefaultPosition, wx.DefaultSize, 0
+                )
+                checkbox.Bind(wx.EVT_CHECKBOX, self.OnCheckBox)
+                checkbox.SetValue(valor)
+
+                gbSizerDinamicoAccesos.Add(
+                    checkbox, wx.GBPosition(i + 5, 0), wx.GBSpan(1, 1), wx.ALL, 5
+                )
+            self.SetSizer(gbSizerDinamicoAccesos)
+
+        except Exception as e:
+            print(f"Error en inicializacion de obtenerDetalles(): {str(e)}")
+
+        # gbSizer51.Add( self.m_checkBoxToggleGoogleDrive, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
         self.m_staticTextNombreUsuario.SetLabelText(config.usuarioSeleccionado)
         if not config.admin:
             for control in self.GetChildren():
                 if isinstance(control, wx.CheckBox):
                     control.Enable(False)
+
         # from pyad import pyad
         # user = pyad.from_cn(config.usuarioSeleccionado)
         # status = user.get_user_account_control_settings()
