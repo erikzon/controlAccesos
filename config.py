@@ -3,6 +3,7 @@ global contrasena_actual
 global admin
 global usuarioSeleccionado
 global IDusuarioSeleccionado
+global usuarioSeleccionadoNombreCompleto
 
 
 def limpiar():
@@ -11,3 +12,4 @@ def limpiar():
     admin = None
     usuarioSeleccionado = None
     IDusuarioSeleccionado = None
+    usuarioSeleccionadoNombreCompleto = None

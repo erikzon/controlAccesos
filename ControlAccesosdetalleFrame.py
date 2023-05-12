@@ -87,6 +87,9 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
 
         # gbSizer51.Add( self.m_checkBoxToggleGoogleDrive, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
         self.m_staticTextNombreUsuario.SetLabelText(config.usuarioSeleccionado)
+        self.m_staticText9NombreCopleto.SetLabelText(
+            config.usuarioSeleccionadoNombreCompleto
+        )
         if not config.admin:
             for control in self.GetChildren():
                 if isinstance(control, wx.CheckBox):

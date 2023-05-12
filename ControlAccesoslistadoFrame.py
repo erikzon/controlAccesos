@@ -45,8 +45,12 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
         selected_row = self.m_dataViewListCtrlUsuarios.GetSelectedRow()
         usuario_ad = self.m_dataViewListCtrlUsuarios.GetValue(selected_row, 2)
         usuario_id = self.m_dataViewListCtrlUsuarios.GetValue(selected_row, 0)
+        usuario_nombreCompleto = self.m_dataViewListCtrlUsuarios.GetValue(
+            selected_row, 1
+        )
         config.usuarioSeleccionado = usuario_ad
         config.IDusuarioSeleccionado = usuario_id
+        config.usuarioSeleccionadoNombreCompleto = usuario_nombreCompleto
         self.Close()
         frame = ControlAccesosdetalleFrame(None)
         frame.Show(True)
