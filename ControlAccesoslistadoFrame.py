@@ -14,48 +14,31 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
 
     # Handlers for listadoFrame events.
     def listarUsuarios(self, event):
-        try:
-            connection = pymysql.connect(
-                host="localhost",
-                user=config.usuario_actual,
-                password=config.contrasena_actual,
-                database="accesos",
-                cursorclass=pymysql.cursors.DictCursor,
-            )
-            with connection:
-                with connection.cursor() as cursor:
-                    sql = """SELECT u.idusuario, u.nombreCompleto, u.usuarioAD, a.nombre AS area, p.nombre AS pais
-							FROM usuario u
-							INNER JOIN area a ON u.area = a.idarea
-							INNER JOIN pais p ON u.pais = p.idpais;"""
-                    cursor.execute(sql)
-            result = cursor.fetchall()
-
-            if result:
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn("idusuario")
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn("nombreCompleto")
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn("usuarioAD")
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn("area")
-                self.m_dataViewListCtrlUsuarios.AppendTextColumn("pais")
-
-                for j, item in enumerate(result):
-                    self.m_dataViewListCtrlUsuarios.AppendItem(
-                        [
-                            str(item["idusuario"]),
-                            item["nombreCompleto"],
-                            item["usuarioAD"],
-                            item["area"],
-                            item["pais"],
-                        ]
-                    )
-
-            else:
-                print("Error al listarUsuarios")
-        except Exception as e:
-            print(f"Error en listarUsuarios: {str(e)}")
+        result = self.ejecutarQueryLectura(
+            """SELECT u.idusuario, u.nombreCompleto, u.usuarioAD, a.nombre AS area, p.nombre AS pais
+		FROM usuario u
+		INNER JOIN area a ON u.area = a.idarea
+		INNER JOIN pais p ON u.pais = p.idpais;"""
+        )
+        if result:
+            self.llenarTabla(result)
+        else:
+            print("Error al listarUsuarios")
 
     def Buscar(self, event):
-        # TODO: Implement Buscar
+        result = self.ejecutarQueryLectura(
+            """SELECT u.idusuario, u.nombreCompleto, u.usuarioAD, a.nombre AS area, p.nombre AS pais
+		FROM usuario u
+		INNER JOIN area a ON u.area = a.idarea
+		INNER JOIN pais p ON u.pais = p.idpais
+		WHERE u.nombreCompleto LIKE '%{}%';""".format(
+                self.m_textCtrlBusqueda.GetValue().replace("%", "%%")
+            )
+        )
+        if result:
+            self.llenarTabla(result)
+        else:
+            print("Error al listarUsuarios")
         pass
 
     def mostrarDetalle(self, event):
@@ -75,3 +58,47 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
         self.Close()
         frame = ControlAccesosautenticacionFrame(None)
         frame.Show(True)
+
+    def llenarTabla(self, result):
+        self.m_dataViewListCtrlUsuarios.DeleteAllItems()
+        self.m_dataViewListCtrlUsuarios.ClearColumns()
+        self.m_dataViewListCtrlUsuarios.AppendTextColumn("idusuario")
+        self.m_dataViewListCtrlUsuarios.AppendTextColumn("nombreCompleto")
+        self.m_dataViewListCtrlUsuarios.AppendTextColumn("usuarioAD")
+        self.m_dataViewListCtrlUsuarios.AppendTextColumn("area")
+        self.m_dataViewListCtrlUsuarios.AppendTextColumn("pais")
+
+        for j, item in enumerate(result):
+            self.m_dataViewListCtrlUsuarios.AppendItem(
+                [
+                    str(item["idusuario"]),
+                    item["nombreCompleto"],
+                    item["usuarioAD"],
+                    item["area"],
+                    item["pais"],
+                ]
+            )
+
+    def ejecutarQueryLectura(self, query, params=None):
+        try:
+            connection = pymysql.connect(
+                host="localhost",
+                user=config.usuario_actual,
+                password=config.contrasena_actual,
+                database="accesos",
+                cursorclass=pymysql.cursors.DictCursor,
+            )
+            with connection:
+                with connection.cursor() as cursor:
+                    if params is not None:
+                        cursor.execute(query, (params))
+                    else:
+                        cursor.execute(query)
+            result = cursor.fetchall()
+
+            if result:
+                return result
+            else:
+                print("Error, result no tiene un valor valido.")
+        except Exception as e:
+            print(f"Error en ejecutarQueryLectura: {str(e)}")
