@@ -106,3 +106,11 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
                 print("Error, result no tiene un valor valido.")
         except Exception as e:
             print(f"Error en ejecutarQueryLectura: {str(e)}")
+
+    def CrearUsuario(self, event):
+        from ControlAccesosmodificarUsuario import ControlAccesosmodificarUsuario
+
+        self.Close()
+        frame = ControlAccesosmodificarUsuario(None)
+        frame.Show(True)
+        pass
