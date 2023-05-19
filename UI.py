@@ -192,7 +192,7 @@ class listadoFrame ( wx.Frame ):
 class detalleFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Detalle", pos = wx.DefaultPosition, size = wx.Size( 500,288 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Informacion de Accesos", pos = wx.DefaultPosition, size = wx.Size( 500,298 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
@@ -207,7 +207,13 @@ class detalleFrame ( wx.Frame ):
         gbSizer5.Add( self.m_staticText7, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Regresar", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer5.Add( self.m_buttonRegresar, wx.GBPosition( 5, 2 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        gbSizer5.Add( self.m_buttonRegresar, wx.GBPosition( 9, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_buttonEliminarUsuario = wx.Button( self, wx.ID_ANY, u"Eliminar Usuario", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer5.Add( self.m_buttonEliminarUsuario, wx.GBPosition( 9, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
+
+        self.m_buttonEditarUsuario = wx.Button( self, wx.ID_ANY, u"Editar Usuario", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer5.Add( self.m_buttonEditarUsuario, wx.GBPosition( 9, 2 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_staticTextNombreUsuario = wx.StaticText( self, wx.ID_ANY, u"<nombre usuario>", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticTextNombreUsuario.Wrap( -1 )
@@ -243,6 +249,8 @@ class detalleFrame ( wx.Frame ):
         # Connect Events
         self.Bind( wx.EVT_SHOW, self.obtenerDetalles )
         self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.regresar )
+        self.m_buttonEliminarUsuario.Bind( wx.EVT_BUTTON, self.eliminarUsuario )
+        self.m_buttonEditarUsuario.Bind( wx.EVT_BUTTON, self.editarUsuario )
         self.m_checkBoxToggleActiveDirectory.Bind( wx.EVT_CHECKBOX, self.toggleActiveDirectory )
 
     def __del__( self ):
@@ -256,6 +264,12 @@ class detalleFrame ( wx.Frame ):
     def regresar( self, event ):
         event.Skip()
 
+    def eliminarUsuario( self, event ):
+        event.Skip()
+
+    def editarUsuario( self, event ):
+        event.Skip()
+
     def toggleActiveDirectory( self, event ):
         event.Skip()
 
@@ -267,7 +281,7 @@ class detalleFrame ( wx.Frame ):
 class modificarUsuario ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Crear Usuario", pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
