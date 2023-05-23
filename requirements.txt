@@ -1,0 +1,5 @@
+#este software utiliza python 3.7 por lo que probablemente estas dependencias unicamente funcionen en esta version.
+pyad
+pyMySQL
+pywin32
+wxpython

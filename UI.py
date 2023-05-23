@@ -125,7 +125,7 @@ class listadoFrame ( wx.Frame ):
         self.m_comboBoxArea = wx.ComboBox( self, wx.ID_ANY, u"Todos", wx.DefaultPosition, wx.DefaultSize, m_comboBoxAreaChoices, 0 )
         gbSizer4.Add( self.m_comboBoxArea, wx.GBPosition( 1, 3 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
-        self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Busqueda por nombre:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Busqueda por nombrex:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText8.Wrap( -1 )
 
         gbSizer4.Add( self.m_staticText8, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
