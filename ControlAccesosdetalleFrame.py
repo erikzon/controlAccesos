@@ -27,10 +27,10 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
             with connection:
                 with connection.cursor() as cursor:
                     sql = """UPDATE usuario_acceso 
-                            SET valor_acceso = %s
-                            WHERE idusuario = %s AND id_acceso = (
-                            SELECT id_acceso FROM acceso WHERE nombre_acceso = %s);
-                            """
+							SET valor_acceso = %s
+							WHERE idusuario = %s AND id_acceso = (
+							SELECT id_acceso FROM acceso WHERE nombre_acceso = %s);
+							"""
                     cursor.execute(
                         sql,
                         (
@@ -58,10 +58,10 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
             with connection:
                 with connection.cursor() as cursor:
                     sql = """SELECT p.nombre_acceso, up.valor_acceso
-                            FROM usuario AS u
-                            JOIN usuario_acceso AS up ON u.idusuario = up.idusuario
-                            JOIN acceso AS p ON up.id_acceso = p.id_acceso
-                            WHERE u.usuarioAD = %s;"""
+							FROM usuario AS u
+							JOIN usuario_acceso AS up ON u.idusuario = up.idusuario
+							JOIN acceso AS p ON up.id_acceso = p.id_acceso
+							WHERE u.usuarioAD = %s;"""
                     cursor.execute(sql, config.usuarioSeleccionado)
             result = cursor.fetchall()
 
@@ -85,12 +85,15 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
         except Exception as e:
             print(f"Error en inicializacion de obtenerDetalles(): {str(e)}")
 
-        # gbSizer51.Add( self.m_checkBoxToggleGoogleDrive, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
         self.m_staticTextNombreUsuario.SetLabelText(config.usuarioSeleccionado)
         self.m_staticText9NombreCopleto.SetLabelText(
             config.usuarioSeleccionadoNombreCompleto
         )
+
+        # si no es admin deshabilitar los checkbox y no permitir eliminar y editar un usuario:
         if not config.admin:
+            self.m_buttonEliminarUsuario.Enable(False)
+            self.m_buttonEditarUsuario.Enable(False)
             for control in self.GetChildren():
                 if isinstance(control, wx.CheckBox):
                     control.Enable(False)
@@ -133,10 +136,9 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
         #     )
         pass
 
-    def toggleAnydesk(self, event):
-        # TODO: Implement toggleAnydesk
-        pass
+    def editarUsuario(self, event):
+        from ControlAccesosmodificarUsuario import ControlAccesosmodificarUsuario
 
-    def toggleGoogleDrive(self, event):
-        # TODO: Implement toggleGoogleDrive
-        pass
+        self.Close()
+        frame = ControlAccesosmodificarUsuario(None)
+        frame.Show(True)

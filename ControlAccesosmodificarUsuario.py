@@ -11,13 +11,12 @@ class ControlAccesosmodificarUsuario(UI.modificarUsuario):
 
     # Handlers for modificarUsuario events.
     def Regresar(self, event):
-        from ControlAccesoslistadoFrame import ControlAccesoslistadoFrame
+        from ControlAccesosdetalleFrame import ControlAccesosdetalleFrame
 
         self.Close()
-        frame = ControlAccesoslistadoFrame(None)
+        frame = ControlAccesosdetalleFrame(None)
         frame.Show(True)
-        pass
 
-    def AgregarPermisos(self, event):
-        # TODO: Implement AgregarPermisos
+    def guardarCambios(self, event):
+        # TODO: Implement guardarCambios
         pass

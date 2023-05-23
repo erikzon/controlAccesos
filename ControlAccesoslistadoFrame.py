@@ -151,10 +151,10 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
             print(f"Error en ejecutarQueryLectura: {str(e)}")
 
     def panelDeControl(self, event):
-        from ControlAccesosmodificarUsuario import ControlAccesosmodificarUsuario
+        from ControlAccesospanelDeControl import ControlAccesospanelDeControl
 
         self.Close()
-        frame = ControlAccesosmodificarUsuario(None)
+        frame = ControlAccesospanelDeControl(None)
         frame.Show(True)
         pass
 

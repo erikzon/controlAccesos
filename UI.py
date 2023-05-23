@@ -95,7 +95,7 @@ class autenticacionFrame ( wx.Frame ):
 class listadoFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Usuarios", pos = wx.DefaultPosition, size = wx.Size( 622,545 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Usuarios", pos = wx.DefaultPosition, size = wx.Size( 627,545 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 244, 244, 244 ) )
@@ -105,7 +105,7 @@ class listadoFrame ( wx.Frame ):
         gbSizer4.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
         self.m_button4CerrarSesion = wx.Button( self, wx.ID_ANY, u"Cerrar Sesion", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer4.Add( self.m_button4CerrarSesion, wx.GBPosition( 0, 4 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+        gbSizer4.Add( self.m_button4CerrarSesion, wx.GBPosition( 0, 4 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
 
         self.m_staticText18 = wx.StaticText( self, wx.ID_ANY, u"Pais:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText18.Wrap( -1 )
@@ -125,7 +125,7 @@ class listadoFrame ( wx.Frame ):
         self.m_comboBoxArea = wx.ComboBox( self, wx.ID_ANY, u"Todos", wx.DefaultPosition, wx.DefaultSize, m_comboBoxAreaChoices, 0 )
         gbSizer4.Add( self.m_comboBoxArea, wx.GBPosition( 1, 3 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
-        self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Busqueda por nombrex:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Busqueda por nombre:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText8.Wrap( -1 )
 
         gbSizer4.Add( self.m_staticText8, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
@@ -200,7 +200,7 @@ class listadoFrame ( wx.Frame ):
 class detalleFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Informacion de Accesos", pos = wx.DefaultPosition, size = wx.Size( 533,298 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Informacion de Accesos", pos = wx.DefaultPosition, size = wx.Size( 533,511 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
@@ -215,13 +215,13 @@ class detalleFrame ( wx.Frame ):
         gbSizer5.Add( self.m_staticText7, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Regresar", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer5.Add( self.m_buttonRegresar, wx.GBPosition( 9, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        gbSizer5.Add( self.m_buttonRegresar, wx.GBPosition( 20, 0 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_buttonEliminarUsuario = wx.Button( self, wx.ID_ANY, u"Eliminar Usuario", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer5.Add( self.m_buttonEliminarUsuario, wx.GBPosition( 9, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
+        gbSizer5.Add( self.m_buttonEliminarUsuario, wx.GBPosition( 20, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
 
         self.m_buttonEditarUsuario = wx.Button( self, wx.ID_ANY, u"Editar Usuario", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer5.Add( self.m_buttonEditarUsuario, wx.GBPosition( 9, 2 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        gbSizer5.Add( self.m_buttonEditarUsuario, wx.GBPosition( 20, 2 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_staticTextNombreUsuario = wx.StaticText( self, wx.ID_ANY, u"<nombre usuario>", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticTextNombreUsuario.Wrap( -1 )
@@ -289,7 +289,7 @@ class detalleFrame ( wx.Frame ):
 class modificarUsuario ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Crear Usuario", pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Modificar Usuario", pos = wx.DefaultPosition, size = wx.Size( 500,275 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
@@ -348,11 +348,11 @@ class modificarUsuario ( wx.Frame ):
 
         gbSizer6.Add( self.m_staticText14, wx.GBPosition( 5, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-        self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Regresar", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer6.Add( self.m_buttonRegresar, wx.GBPosition( 7, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_BOTTOM|wx.ALIGN_RIGHT, 5 )
+        self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Volver", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer6.Add( self.m_buttonRegresar, wx.GBPosition( 6, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_BOTTOM, 5 )
 
-        self.m_buttonAgregarPermisos = wx.Button( self, wx.ID_ANY, u"Agregar Permisos", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer6.Add( self.m_buttonAgregarPermisos, wx.GBPosition( 7, 1 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+        self.m_buttonGuardarCambios = wx.Button( self, wx.ID_ANY, u"Guardar Cambios y volver", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer6.Add( self.m_buttonGuardarCambios, wx.GBPosition( 6, 1 ), wx.GBSpan( 1, 3 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
 
         m_comboBox2Choices = []
         self.m_comboBox2 = wx.ComboBox( self, wx.ID_ANY, u"Guatemala", wx.DefaultPosition, wx.DefaultSize, m_comboBox2Choices, 0 )
@@ -370,7 +370,7 @@ class modificarUsuario ( wx.Frame ):
 
         # Connect Events
         self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.Regresar )
-        self.m_buttonAgregarPermisos.Bind( wx.EVT_BUTTON, self.AgregarPermisos )
+        self.m_buttonGuardarCambios.Bind( wx.EVT_BUTTON, self.guardarCambios )
 
     def __del__( self ):
         pass
@@ -380,7 +380,114 @@ class modificarUsuario ( wx.Frame ):
     def Regresar( self, event ):
         event.Skip()
 
-    def AgregarPermisos( self, event ):
+    def guardarCambios( self, event ):
+        event.Skip()
+
+
+###########################################################################
+## Class panelDeControl
+###########################################################################
+
+class panelDeControl ( wx.Frame ):
+
+    def __init__( self, parent ):
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Panel de Control", pos = wx.DefaultPosition, size = wx.Size( 500,306 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+
+        self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+        self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
+
+        gbSizer6 = wx.GridBagSizer( 0, 0 )
+        gbSizer6.SetFlexibleDirection( wx.BOTH )
+        gbSizer6.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
+
+        self.m_staticText36 = wx.StaticText( self, wx.ID_ANY, u"CREAR USUARIO", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText36.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText36, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 4 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+        self.m_staticText11 = wx.StaticText( self, wx.ID_ANY, u"Nombre Completo:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText11.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText11, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+        self.m_textCtrlNombreCompleto = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
+        gbSizer6.Add( self.m_textCtrlNombreCompleto, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticText12 = wx.StaticText( self, wx.ID_ANY, u"Usuario Active Directory:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText12.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText12, wx.GBPosition( 2, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+        self.m_textCtrlActiveDirectory = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
+        gbSizer6.Add( self.m_textCtrlActiveDirectory, wx.GBPosition( 2, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticTextNombreDePila = wx.StaticText( self, wx.ID_ANY, u"Nombre de Pila:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticTextNombreDePila.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticTextNombreDePila, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+        self.m_textCtrlNombreDePila = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
+        gbSizer6.Add( self.m_textCtrlNombreDePila, wx.GBPosition( 3, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticText15 = wx.StaticText( self, wx.ID_ANY, u"Iniciales:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText15.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText15, wx.GBPosition( 3, 2 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+        self.m_textCtrlIniciales = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 60,-1 ), 0 )
+        gbSizer6.Add( self.m_textCtrlIniciales, wx.GBPosition( 3, 3 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticText17 = wx.StaticText( self, wx.ID_ANY, u"Apellidos:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText17.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText17, wx.GBPosition( 4, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+        self.m_textCtrl8 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
+        gbSizer6.Add( self.m_textCtrl8, wx.GBPosition( 4, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticText13 = wx.StaticText( self, wx.ID_ANY, u"Area de empresa:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText13.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText13, wx.GBPosition( 5, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+        m_comboBox1Choices = []
+        self.m_comboBox1 = wx.ComboBox( self, wx.ID_ANY, u"IT", wx.DefaultPosition, wx.DefaultSize, m_comboBox1Choices, 0 )
+        gbSizer6.Add( self.m_comboBox1, wx.GBPosition( 5, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_staticText14 = wx.StaticText( self, wx.ID_ANY, u"Pais:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText14.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText14, wx.GBPosition( 6, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+        m_comboBox2Choices = []
+        self.m_comboBox2 = wx.ComboBox( self, wx.ID_ANY, u"Guatemala", wx.DefaultPosition, wx.DefaultSize, m_comboBox2Choices, 0 )
+        gbSizer6.Add( self.m_comboBox2, wx.GBPosition( 6, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Volver", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer6.Add( self.m_buttonRegresar, wx.GBPosition( 7, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_BOTTOM, 5 )
+
+        self.m_buttonCrearUsuario = wx.Button( self, wx.ID_ANY, u"Crear y proceder a modificar accesos", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer6.Add( self.m_buttonCrearUsuario, wx.GBPosition( 7, 1 ), wx.GBSpan( 1, 3 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
+
+
+        self.SetSizer( gbSizer6 )
+        self.Layout()
+
+        self.Centre( wx.BOTH )
+
+        # Connect Events
+        self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.Regresar )
+        self.m_buttonCrearUsuario.Bind( wx.EVT_BUTTON, self.CrearUsuario )
+
+    def __del__( self ):
+        pass
+
+
+    # Virtual event handlers, override them in your derived class
+    def Regresar( self, event ):
+        event.Skip()
+
+    def CrearUsuario( self, event ):
         event.Skip()
 
 
