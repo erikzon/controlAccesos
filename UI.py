@@ -107,25 +107,25 @@ class listadoFrame ( wx.Frame ):
         self.m_button4CerrarSesion = wx.Button( self, wx.ID_ANY, u"Cerrar Sesion", wx.DefaultPosition, wx.DefaultSize, 0 )
         gbSizer4.Add( self.m_button4CerrarSesion, wx.GBPosition( 0, 4 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
-        self.m_staticText18 = wx.StaticText( self, wx.ID_ANY, u"Filtrar Por Pais:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText18 = wx.StaticText( self, wx.ID_ANY, u"Pais:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText18.Wrap( -1 )
 
         gbSizer4.Add( self.m_staticText18, wx.GBPosition( 1, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_RIGHT|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-        m_comboBox3Choices = []
-        self.m_comboBox3 = wx.ComboBox( self, wx.ID_ANY, u"Todos", wx.DefaultPosition, wx.DefaultSize, m_comboBox3Choices, 0 )
-        gbSizer4.Add( self.m_comboBox3, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        m_comboBoxPaisChoices = []
+        self.m_comboBoxPais = wx.ComboBox( self, wx.ID_ANY, u"Todos", wx.DefaultPosition, wx.DefaultSize, m_comboBoxPaisChoices, 0 )
+        gbSizer4.Add( self.m_comboBoxPais, wx.GBPosition( 1, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
-        self.m_staticText19 = wx.StaticText( self, wx.ID_ANY, u"Filtrar Por Area:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText19 = wx.StaticText( self, wx.ID_ANY, u"Area:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText19.Wrap( -1 )
 
-        gbSizer4.Add( self.m_staticText19, wx.GBPosition( 1, 2 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+        gbSizer4.Add( self.m_staticText19, wx.GBPosition( 1, 2 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL|wx.ALIGN_RIGHT, 5 )
 
-        m_comboBox4Choices = []
-        self.m_comboBox4 = wx.ComboBox( self, wx.ID_ANY, u"Todos", wx.DefaultPosition, wx.DefaultSize, m_comboBox4Choices, 0 )
-        gbSizer4.Add( self.m_comboBox4, wx.GBPosition( 1, 3 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        m_comboBoxAreaChoices = []
+        self.m_comboBoxArea = wx.ComboBox( self, wx.ID_ANY, u"Todos", wx.DefaultPosition, wx.DefaultSize, m_comboBoxAreaChoices, 0 )
+        gbSizer4.Add( self.m_comboBoxArea, wx.GBPosition( 1, 3 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
-        self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Busqueda por nombre usuario", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText8 = wx.StaticText( self, wx.ID_ANY, u"Busqueda por nombre:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText8.Wrap( -1 )
 
         gbSizer4.Add( self.m_staticText8, wx.GBPosition( 0, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
@@ -136,8 +136,8 @@ class listadoFrame ( wx.Frame ):
         self.m_buttonBuscar = wx.Button( self, wx.ID_ANY, u"Buscar", wx.DefaultPosition, wx.DefaultSize, 0 )
         gbSizer4.Add( self.m_buttonBuscar, wx.GBPosition( 0, 3 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
-        self.m_buttonCrearUsuario = wx.Button( self, wx.ID_ANY, u"Crear Usuario", wx.DefaultPosition, wx.Size( 85,-1 ), 0 )
-        gbSizer4.Add( self.m_buttonCrearUsuario, wx.GBPosition( 2, 4 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+        self.m_buttonPanelControl = wx.Button( self, wx.ID_ANY, u"Panel de Control", wx.DefaultPosition, wx.Size( 120,-1 ), 0 )
+        gbSizer4.Add( self.m_buttonPanelControl, wx.GBPosition( 2, 3 ), wx.GBSpan( 1, 2 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
 
         gbSizer9 = wx.GridBagSizer( 0, 0 )
         gbSizer9.SetFlexibleDirection( wx.BOTH )
@@ -160,8 +160,10 @@ class listadoFrame ( wx.Frame ):
         # Connect Events
         self.Bind( wx.EVT_SHOW, self.listarUsuarios )
         self.m_button4CerrarSesion.Bind( wx.EVT_BUTTON, self.CerrarSesion )
+        self.m_comboBoxPais.Bind( wx.EVT_COMBOBOX, self.m_comboBoxPaisOnCombobox )
+        self.m_comboBoxArea.Bind( wx.EVT_COMBOBOX, self.m_comboBoxAreaOnCombobox )
         self.m_buttonBuscar.Bind( wx.EVT_BUTTON, self.Buscar )
-        self.m_buttonCrearUsuario.Bind( wx.EVT_BUTTON, self.CrearUsuario )
+        self.m_buttonPanelControl.Bind( wx.EVT_BUTTON, self.panelDeControl )
         self.m_dataViewListCtrlUsuarios.Bind( wx.dataview.EVT_DATAVIEW_ITEM_ACTIVATED, self.mostrarDetalle, id = wx.ID_ANY )
 
     def __del__( self ):
@@ -175,10 +177,16 @@ class listadoFrame ( wx.Frame ):
     def CerrarSesion( self, event ):
         event.Skip()
 
+    def m_comboBoxPaisOnCombobox( self, event ):
+        event.Skip()
+
+    def m_comboBoxAreaOnCombobox( self, event ):
+        event.Skip()
+
     def Buscar( self, event ):
         event.Skip()
 
-    def CrearUsuario( self, event ):
+    def panelDeControl( self, event ):
         event.Skip()
 
     def mostrarDetalle( self, event ):
@@ -192,7 +200,7 @@ class listadoFrame ( wx.Frame ):
 class detalleFrame ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Informacion de Accesos", pos = wx.DefaultPosition, size = wx.Size( 500,298 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Informacion de Accesos", pos = wx.DefaultPosition, size = wx.Size( 533,298 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
