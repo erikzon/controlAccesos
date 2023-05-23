@@ -354,13 +354,13 @@ class modificarUsuario ( wx.Frame ):
         self.m_buttonGuardarCambios = wx.Button( self, wx.ID_ANY, u"Guardar Cambios y volver", wx.DefaultPosition, wx.DefaultSize, 0 )
         gbSizer6.Add( self.m_buttonGuardarCambios, wx.GBPosition( 6, 1 ), wx.GBSpan( 1, 3 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
 
-        m_comboBox2Choices = []
-        self.m_comboBox2 = wx.ComboBox( self, wx.ID_ANY, u"Guatemala", wx.DefaultPosition, wx.DefaultSize, m_comboBox2Choices, 0 )
-        gbSizer6.Add( self.m_comboBox2, wx.GBPosition( 5, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        m_comboBoxPaisChoices = []
+        self.m_comboBoxPais = wx.ComboBox( self, wx.ID_ANY, u"Guatemala", wx.DefaultPosition, wx.DefaultSize, m_comboBoxPaisChoices, 0 )
+        gbSizer6.Add( self.m_comboBoxPais, wx.GBPosition( 5, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
-        m_comboBox1Choices = []
-        self.m_comboBox1 = wx.ComboBox( self, wx.ID_ANY, u"IT", wx.DefaultPosition, wx.DefaultSize, m_comboBox1Choices, 0 )
-        gbSizer6.Add( self.m_comboBox1, wx.GBPosition( 4, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        m_comboBoxAreaChoices = []
+        self.m_comboBoxArea = wx.ComboBox( self, wx.ID_ANY, u"IT", wx.DefaultPosition, wx.DefaultSize, m_comboBoxAreaChoices, 0 )
+        gbSizer6.Add( self.m_comboBoxArea, wx.GBPosition( 4, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
 
         self.SetSizer( gbSizer6 )
@@ -369,6 +369,7 @@ class modificarUsuario ( wx.Frame ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_SHOW, self.traerDatosParaFormulario )
         self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.Regresar )
         self.m_buttonGuardarCambios.Bind( wx.EVT_BUTTON, self.guardarCambios )
 
@@ -377,6 +378,9 @@ class modificarUsuario ( wx.Frame ):
 
 
     # Virtual event handlers, override them in your derived class
+    def traerDatosParaFormulario( self, event ):
+        event.Skip()
+
     def Regresar( self, event ):
         event.Skip()
 

@@ -2,6 +2,8 @@
 
 import wx
 import UI
+import config
+import pymysql.cursors
 
 
 # Implementing modificarUsuario
@@ -20,3 +22,36 @@ class ControlAccesosmodificarUsuario(UI.modificarUsuario):
     def guardarCambios(self, event):
         # TODO: Implement guardarCambios
         pass
+
+    def traerDatosParaFormulario(self, event):
+        datosPais = config.ejecutarQueryLectura("""SELECT nombre AS pais FROM pais;""")
+        datosArea = config.ejecutarQueryLectura("""SELECT nombre AS area FROM area;""")
+
+        if datosPais:
+            for i, item in enumerate(datosPais):
+                self.m_comboBoxPais.Append(item["pais"])
+        else:
+            print("Error al listar Combobox pais")
+
+        if datosArea:
+            for j, item in enumerate(datosArea):
+                self.m_comboBoxArea.Append(item["area"])
+        else:
+            print("Error al listar Combobox area")
+
+        datosUsuario = config.ejecutarQueryLectura(
+            """SELECT u.idusuario, u.nombreCompleto, u.usuarioAD, a.nombre AS area, p.nombre AS pais
+				FROM usuario u
+				INNER JOIN area a ON u.area = a.idarea
+				INNER JOIN pais p ON u.pais = p.idpais where u.idusuario = %s;""",
+            config.IDusuarioSeleccionado,
+        )
+
+        self.m_textCtrlNombreCompleto.SetValue(datosUsuario[0]["nombreCompleto"])
+        self.m_textCtrlActiveDirectory.SetValue(datosUsuario[0]["usuarioAD"])
+
+        index_pais = self.m_comboBoxPais.FindString(datosUsuario[0]["pais"])
+        self.m_comboBoxPais.SetSelection(index_pais)
+
+        index_area = self.m_comboBoxArea.FindString(datosUsuario[0]["area"])
+        self.m_comboBoxArea.SetSelection(index_area)

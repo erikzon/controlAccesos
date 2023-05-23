@@ -14,7 +14,7 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
 
     # Handlers for listadoFrame events.
     def listarUsuarios(self, event):
-        result = self.ejecutarQueryLectura(
+        result = config.ejecutarQueryLectura(
             """SELECT u.idusuario, u.nombreCompleto, u.usuarioAD, a.nombre AS area, p.nombre AS pais
 		FROM usuario u
 		INNER JOIN area a ON u.area = a.idarea
@@ -26,7 +26,7 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
             print("Error al listarUsuarios")
 
         # LLENAR COMBOBOX PAIS
-        resultComboBoxPais = self.ejecutarQueryLectura(
+        resultComboBoxPais = config.ejecutarQueryLectura(
             """SELECT nombre AS pais FROM pais;"""
         )
         self.m_comboBoxPais.Append("Todos")
@@ -39,7 +39,7 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
             self.m_buttonPanelControl.Enable(False)
 
         # LLENAR COMBOBOX AREA
-        resultComboBoxPais = self.ejecutarQueryLectura(
+        resultComboBoxPais = config.ejecutarQueryLectura(
             """SELECT nombre AS area FROM area;"""
         )
         self.m_comboBoxArea.Append("Todos")
@@ -66,7 +66,7 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
         if self.m_comboBoxArea.GetValue() != "Todos":
             query += " AND a.nombre = '{}'".format(self.m_comboBoxArea.GetValue())
 
-        result = self.ejecutarQueryLectura(query)
+        result = config.ejecutarQueryLectura(query)
 
         if result:
             self.llenarTabla(result)
@@ -125,30 +125,6 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
         self.m_dataViewListCtrlUsuarios.AppendTextColumn("usuarioAD")
         self.m_dataViewListCtrlUsuarios.AppendTextColumn("area")
         self.m_dataViewListCtrlUsuarios.AppendTextColumn("pais")
-
-    def ejecutarQueryLectura(self, query, params=None):
-        try:
-            connection = pymysql.connect(
-                host="localhost",
-                user=config.usuario_actual,
-                password=config.contrasena_actual,
-                database="accesos",
-                cursorclass=pymysql.cursors.DictCursor,
-            )
-            with connection:
-                with connection.cursor() as cursor:
-                    if params is not None:
-                        cursor.execute(query, (params))
-                    else:
-                        cursor.execute(query)
-            result = cursor.fetchall()
-
-            if result:
-                return result
-            else:
-                print("Error, result no tiene un valor valido.")
-        except Exception as e:
-            print(f"Error en ejecutarQueryLectura: {str(e)}")
 
     def panelDeControl(self, event):
         from ControlAccesospanelDeControl import ControlAccesospanelDeControl

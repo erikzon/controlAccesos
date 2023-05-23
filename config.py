@@ -1,3 +1,5 @@
+import pymysql.cursors
+
 global usuario_actual
 global contrasena_actual
 global admin
@@ -13,3 +15,28 @@ def limpiar():
     usuarioSeleccionado = None
     IDusuarioSeleccionado = None
     usuarioSeleccionadoNombreCompleto = None
+
+
+def ejecutarQueryLectura(query, params=None):
+    try:
+        connection = pymysql.connect(
+            host="localhost",
+            user=usuario_actual,
+            password=contrasena_actual,
+            database="accesos",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        with connection:
+            with connection.cursor() as cursor:
+                if params is not None:
+                    cursor.execute(query, (params))
+                else:
+                    cursor.execute(query)
+        result = cursor.fetchall()
+
+        if result:
+            return result
+        else:
+            print("Error, result no tiene un valor valido.")
+    except Exception as e:
+        print(f"Error en ejecutarQueryLectura: {str(e)}")

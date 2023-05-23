@@ -1909,6 +1909,7 @@
             <property name="window_name"></property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <property name="xrc_skip_sizer">1</property>
+            <event name="OnShow">traerDatosParaFormulario</event>
             <object class="wxGridBagSizer" expanded="0">
                 <property name="empty_cell_size"></property>
                 <property name="flexible_direction">wxBOTH</property>
@@ -2900,7 +2901,7 @@
                         <property name="minimize_button">0</property>
                         <property name="minimum_size"></property>
                         <property name="moveable">1</property>
-                        <property name="name">m_comboBox2</property>
+                        <property name="name">m_comboBoxPais</property>
                         <property name="pane_border">1</property>
                         <property name="pane_position"></property>
                         <property name="pane_size"></property>
@@ -2968,7 +2969,7 @@
                         <property name="minimize_button">0</property>
                         <property name="minimum_size"></property>
                         <property name="moveable">1</property>
-                        <property name="name">m_comboBox1</property>
+                        <property name="name">m_comboBoxArea</property>
                         <property name="pane_border">1</property>
                         <property name="pane_position"></property>
                         <property name="pane_size"></property>
