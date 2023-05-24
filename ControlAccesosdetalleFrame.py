@@ -15,35 +15,18 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
         checkbox = event.GetEventObject()
         nombre_acceso = checkbox.GetLabel()
         valor_acceso = checkbox.GetValue()
-        try:
-            connection = pymysql.connect(
-                host="localhost",
-                user=config.usuario_actual,
-                password=config.contrasena_actual,
-                database="accesos",
-                cursorclass=pymysql.cursors.DictCursor,
-                autocommit=True,
-            )
-            with connection:
-                with connection.cursor() as cursor:
-                    sql = """UPDATE usuario_acceso 
+        config.ejecutarQueryUpdate(
+            """UPDATE usuario_acceso 
 							SET valor_acceso = %s
 							WHERE idusuario = %s AND id_acceso = (
 							SELECT id_acceso FROM acceso WHERE nombre_acceso = %s);
-							"""
-                    cursor.execute(
-                        sql,
-                        (
-                            int(valor_acceso),
-                            config.IDusuarioSeleccionado,
-                            nombre_acceso,
-                        ),
-                    )
-                    cursor.close()
-
-                connection.commit()
-        except Exception as e:
-            print(f"Error al actualizar permiso: {str(e)}")
+							""",
+            (
+                int(valor_acceso),
+                config.IDusuarioSeleccionado,
+                nombre_acceso,
+            ),
+        )
 
     # Handlers for detalleFrame events.
     def obtenerDetalles(self, event):

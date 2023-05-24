@@ -18,25 +18,44 @@ class ControlAccesosmodificarUsuario(UI.modificarUsuario):
         frame.Show(True)
 
     def guardarCambios(self, event):
-        # TODO: Implement guardarCambios
-        pass
+        config.ejecutarQueryUpdate(
+            """
+					UPDATE usuario
+						JOIN area ON usuario.area = area.idarea
+						SET usuario.nombreCompleto = %s,
+							usuario.usuarioAD = %s,
+							usuario.area = (SELECT idarea FROM area WHERE nombre = %s),
+                            usuario.pais = (SELECT idpais FROM pais WHERE nombre = %s)
+					WHERE usuario.idusuario = %s;
+				""",
+            (
+                self.m_textCtrlNombreCompleto.GetValue(),
+                self.m_textCtrlActiveDirectory.GetValue(),
+                self.m_comboBoxArea.GetValue(),
+                self.m_comboBoxPais.GetValue(),
+                config.IDusuarioSeleccionado,
+            ),
+        )
+        self.Regresar(self)
 
     def traerDatosParaFormulario(self, event):
+        # llenar comboBox Pais
         datosPais = config.ejecutarQueryLectura("""SELECT nombre AS pais FROM pais;""")
-        datosArea = config.ejecutarQueryLectura("""SELECT nombre AS area FROM area;""")
-
         if datosPais:
             for i, item in enumerate(datosPais):
                 self.m_comboBoxPais.Append(item["pais"])
         else:
             print("Error al listar Combobox pais")
 
+        # llenar comboBox Area
+        datosArea = config.ejecutarQueryLectura("""SELECT nombre AS area FROM area;""")
         if datosArea:
             for j, item in enumerate(datosArea):
                 self.m_comboBoxArea.Append(item["area"])
         else:
             print("Error al listar Combobox area")
 
+        # obtener datos del usuario seleccionado para prellenar el formulario y realizar actualizaciones
         datosUsuario = config.ejecutarQueryLectura(
             """SELECT u.idusuario, u.nombreCompleto, u.usuarioAD, a.nombre AS area, p.nombre AS pais
 				FROM usuario u
