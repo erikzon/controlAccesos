@@ -2,7 +2,6 @@
 
 import wx
 import UI
-import pymysql.cursors
 import config
 
 
@@ -30,43 +29,30 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
 
     # Handlers for detalleFrame events.
     def obtenerDetalles(self, event):
-        try:
-            connection = pymysql.connect(
-                host="localhost",
-                user=config.usuario_actual,
-                password=config.contrasena_actual,
-                database="accesos",
-                cursorclass=pymysql.cursors.DictCursor,
+        result = config.ejecutarQueryLectura(
+            """SELECT p.nombre_acceso, up.valor_acceso
+					FROM usuario AS u
+					JOIN usuario_acceso AS up ON u.idusuario = up.idusuario
+					JOIN acceso AS p ON up.id_acceso = p.id_acceso
+				WHERE u.usuarioAD = %s;""",
+            config.usuarioSeleccionado,
+        )
+        gbSizerDinamicoAccesos = wx.GridBagSizer(0, 0)
+        gbSizerDinamicoAccesos.SetFlexibleDirection(wx.BOTH)
+        gbSizerDinamicoAccesos.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
+        for i, acceso in enumerate(result):
+            nombre = acceso["nombre_acceso"]
+            valor = acceso["valor_acceso"]
+            checkbox = wx.CheckBox(
+                self, wx.ID_ANY, nombre, wx.DefaultPosition, wx.DefaultSize, 0
             )
-            with connection:
-                with connection.cursor() as cursor:
-                    sql = """SELECT p.nombre_acceso, up.valor_acceso
-							FROM usuario AS u
-							JOIN usuario_acceso AS up ON u.idusuario = up.idusuario
-							JOIN acceso AS p ON up.id_acceso = p.id_acceso
-							WHERE u.usuarioAD = %s;"""
-                    cursor.execute(sql, config.usuarioSeleccionado)
-            result = cursor.fetchall()
+            checkbox.Bind(wx.EVT_CHECKBOX, self.OnCheckBox)
+            checkbox.SetValue(valor)
 
-            gbSizerDinamicoAccesos = wx.GridBagSizer(0, 0)
-            gbSizerDinamicoAccesos.SetFlexibleDirection(wx.BOTH)
-            gbSizerDinamicoAccesos.SetNonFlexibleGrowMode(wx.FLEX_GROWMODE_SPECIFIED)
-            for i, acceso in enumerate(result):
-                nombre = acceso["nombre_acceso"]
-                valor = acceso["valor_acceso"]
-                checkbox = wx.CheckBox(
-                    self, wx.ID_ANY, nombre, wx.DefaultPosition, wx.DefaultSize, 0
-                )
-                checkbox.Bind(wx.EVT_CHECKBOX, self.OnCheckBox)
-                checkbox.SetValue(valor)
-
-                gbSizerDinamicoAccesos.Add(
-                    checkbox, wx.GBPosition(i + 5, 0), wx.GBSpan(1, 1), wx.ALL, 5
-                )
-            self.SetSizer(gbSizerDinamicoAccesos)
-
-        except Exception as e:
-            print(f"Error en inicializacion de obtenerDetalles(): {str(e)}")
+            gbSizerDinamicoAccesos.Add(
+                checkbox, wx.GBPosition(i + 5, 0), wx.GBSpan(1, 1), wx.ALL, 5
+            )
+        self.SetSizer(gbSizerDinamicoAccesos)
 
         self.m_staticTextNombreUsuario.SetLabelText(config.usuarioSeleccionado)
         self.m_staticText9NombreCopleto.SetLabelText(
