@@ -54,10 +54,14 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
             )
         self.SetSizer(gbSizerDinamicoAccesos)
 
-        self.m_staticTextNombreUsuario.SetLabelText(config.usuarioSeleccionado)
-        self.m_staticText9NombreCopleto.SetLabelText(
-            config.usuarioSeleccionadoNombreCompleto
+        datosUsuario = config.ejecutarQueryLectura(
+            """SELECT u.nombreCompleto, u.usuarioAD
+				FROM usuario u
+				WHERE u.idusuario = %s;""",
+            config.IDusuarioSeleccionado,
         )
+        self.m_staticTextNombreUsuario.SetLabelText(datosUsuario[0]["usuarioAD"])
+        self.m_staticText9NombreCopleto.SetLabelText(datosUsuario[0]["nombreCompleto"])
 
         # si no es admin deshabilitar los checkbox y no permitir eliminar y editar un usuario:
         if not config.admin:
