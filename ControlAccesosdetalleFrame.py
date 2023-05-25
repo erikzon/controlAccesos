@@ -60,8 +60,8 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
 				WHERE u.idusuario = %s;""",
             config.IDusuarioSeleccionado,
         )
-        self.m_staticTextNombreUsuario.SetLabelText(datosUsuario[0]["usuarioAD"])
         self.m_staticText9NombreCopleto.SetLabelText(datosUsuario[0]["nombreCompleto"])
+        self.m_staticTextNombreUsuario.SetLabelText(datosUsuario[0]["usuarioAD"])
 
         # si no es admin deshabilitar los checkbox y no permitir eliminar y editar un usuario:
         if not config.admin:

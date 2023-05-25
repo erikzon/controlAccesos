@@ -2996,7 +2996,7 @@
                 </object>
             </object>
         </object>
-        <object class="Frame" expanded="0">
+        <object class="Frame" expanded="1">
             <property name="aui_managed">0</property>
             <property name="aui_manager_style">wxAUI_MGR_DEFAULT</property>
             <property name="bg">243,243,243</property>
@@ -3024,6 +3024,7 @@
             <property name="window_name"></property>
             <property name="window_style">wxTAB_TRAVERSAL</property>
             <property name="xrc_skip_sizer">1</property>
+            <event name="OnShow">inicializarPanelDeControl</event>
             <object class="wxGridBagSizer" expanded="0">
                 <property name="empty_cell_size"></property>
                 <property name="flexible_direction">wxBOTH</property>
@@ -3228,6 +3229,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -3359,6 +3361,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -3490,6 +3493,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -3621,6 +3625,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -3730,7 +3735,7 @@
                         <property name="minimize_button">0</property>
                         <property name="minimum_size"></property>
                         <property name="moveable">1</property>
-                        <property name="name">m_textCtrl8</property>
+                        <property name="name">m_textCtrlApellidos</property>
                         <property name="pane_border">1</property>
                         <property name="pane_position"></property>
                         <property name="pane_size"></property>
@@ -3752,6 +3757,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -3861,7 +3867,7 @@
                         <property name="minimize_button">0</property>
                         <property name="minimum_size"></property>
                         <property name="moveable">1</property>
-                        <property name="name">m_comboBox1</property>
+                        <property name="name">m_comboBoxArea</property>
                         <property name="pane_border">1</property>
                         <property name="pane_position"></property>
                         <property name="pane_size"></property>
@@ -3993,7 +3999,7 @@
                         <property name="minimize_button">0</property>
                         <property name="minimum_size"></property>
                         <property name="moveable">1</property>
-                        <property name="name">m_comboBox2</property>
+                        <property name="name">m_comboBoxPais</property>
                         <property name="pane_border">1</property>
                         <property name="pane_position"></property>
                         <property name="pane_size"></property>
@@ -4128,7 +4134,7 @@
                         <property name="dock">Dock</property>
                         <property name="dock_fixed">0</property>
                         <property name="docking">Left</property>
-                        <property name="enabled">1</property>
+                        <property name="enabled">0</property>
                         <property name="fg"></property>
                         <property name="floatable">1</property>
                         <property name="focus"></property>

@@ -446,31 +446,33 @@ class panelDeControl ( wx.Frame ):
 
         gbSizer6.Add( self.m_staticText17, wx.GBPosition( 4, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-        self.m_textCtrl8 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
-        gbSizer6.Add( self.m_textCtrl8, wx.GBPosition( 4, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        self.m_textCtrlApellidos = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
+        gbSizer6.Add( self.m_textCtrlApellidos, wx.GBPosition( 4, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_staticText13 = wx.StaticText( self, wx.ID_ANY, u"Area de empresa:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText13.Wrap( -1 )
 
         gbSizer6.Add( self.m_staticText13, wx.GBPosition( 5, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-        m_comboBox1Choices = []
-        self.m_comboBox1 = wx.ComboBox( self, wx.ID_ANY, u"IT", wx.DefaultPosition, wx.DefaultSize, m_comboBox1Choices, 0 )
-        gbSizer6.Add( self.m_comboBox1, wx.GBPosition( 5, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        m_comboBoxAreaChoices = []
+        self.m_comboBoxArea = wx.ComboBox( self, wx.ID_ANY, u"IT", wx.DefaultPosition, wx.DefaultSize, m_comboBoxAreaChoices, 0 )
+        gbSizer6.Add( self.m_comboBoxArea, wx.GBPosition( 5, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_staticText14 = wx.StaticText( self, wx.ID_ANY, u"Pais:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText14.Wrap( -1 )
 
         gbSizer6.Add( self.m_staticText14, wx.GBPosition( 6, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-        m_comboBox2Choices = []
-        self.m_comboBox2 = wx.ComboBox( self, wx.ID_ANY, u"Guatemala", wx.DefaultPosition, wx.DefaultSize, m_comboBox2Choices, 0 )
-        gbSizer6.Add( self.m_comboBox2, wx.GBPosition( 6, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        m_comboBoxPaisChoices = []
+        self.m_comboBoxPais = wx.ComboBox( self, wx.ID_ANY, u"Guatemala", wx.DefaultPosition, wx.DefaultSize, m_comboBoxPaisChoices, 0 )
+        gbSizer6.Add( self.m_comboBoxPais, wx.GBPosition( 6, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Volver", wx.DefaultPosition, wx.DefaultSize, 0 )
         gbSizer6.Add( self.m_buttonRegresar, wx.GBPosition( 7, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_BOTTOM, 5 )
 
         self.m_buttonCrearUsuario = wx.Button( self, wx.ID_ANY, u"Crear y proceder a modificar accesos", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_buttonCrearUsuario.Enable( False )
+
         gbSizer6.Add( self.m_buttonCrearUsuario, wx.GBPosition( 7, 1 ), wx.GBSpan( 1, 3 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
 
 
@@ -480,6 +482,12 @@ class panelDeControl ( wx.Frame ):
         self.Centre( wx.BOTH )
 
         # Connect Events
+        self.Bind( wx.EVT_SHOW, self.inicializarPanelDeControl )
+        self.m_textCtrlNombreCompleto.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_textCtrlActiveDirectory.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_textCtrlNombreDePila.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_textCtrlIniciales.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_textCtrlApellidos.Bind( wx.EVT_TEXT, self.validarBotonCrear )
         self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.Regresar )
         self.m_buttonCrearUsuario.Bind( wx.EVT_BUTTON, self.CrearUsuario )
 
@@ -488,6 +496,16 @@ class panelDeControl ( wx.Frame ):
 
 
     # Virtual event handlers, override them in your derived class
+    def inicializarPanelDeControl( self, event ):
+        event.Skip()
+
+    def validarBotonCrear( self, event ):
+        event.Skip()
+
+
+
+
+
     def Regresar( self, event ):
         event.Skip()
 
