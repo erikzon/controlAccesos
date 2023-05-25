@@ -16,10 +16,10 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
         valor_acceso = checkbox.GetValue()
         config.ejecutarQueryUpdate(
             """UPDATE usuario_acceso 
-							SET valor_acceso = %s
-							WHERE idusuario = %s AND id_acceso = (
-							SELECT id_acceso FROM acceso WHERE nombre_acceso = %s);
-							""",
+                SET valor_acceso = %s
+                WHERE idusuario = %s AND id_acceso = (
+                SELECT id_acceso FROM acceso WHERE nombre_acceso = %s);
+                """,
             (
                 int(valor_acceso),
                 config.IDusuarioSeleccionado,
@@ -115,3 +115,11 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
         self.Close()
         frame = ControlAccesosmodificarUsuario(None)
         frame.Show(True)
+
+    def eliminarUsuario(self, event):
+        config.ejecutarQueryDelete(
+            """DELETE FROM usuario WHERE idusuario = %s;""",
+            config.IDusuarioSeleccionado,
+        )
+
+        self.regresar(self)
