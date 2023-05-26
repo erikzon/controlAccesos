@@ -19,27 +19,38 @@ class ControlAccesosmodificarUsuario(UI.modificarUsuario):
         frame.Show(True)
 
     def guardarCambios(self, event):
-        config.ejecutarQueryUpdate(
-            """
-					UPDATE usuario
-						JOIN area ON usuario.area = area.idarea
-						SET usuario.nombreCompleto = %s,
-							usuario.usuarioAD = %s,
-							usuario.area = (SELECT idarea FROM area WHERE nombre = %s),
-                            usuario.pais = (SELECT idpais FROM pais WHERE nombre = %s)
-					WHERE usuario.idusuario = %s;
-				""",
-            (
-                self.m_textCtrlNombreCompleto.GetValue(),
-                self.m_textCtrlActiveDirectory.GetValue(),
-                self.m_comboBoxArea.GetValue(),
-                self.m_comboBoxPais.GetValue(),
-                config.IDusuarioSeleccionado,
-            ),
-        )
+        try:
+            config.ejecutarQueryUpdate(
+                """
+                        UPDATE usuario
+                            JOIN area ON usuario.area = area.idarea
+                            SET usuario.nombreCompleto = %s,
+                                usuario.usuarioAD = %s,
+                                usuario.area = (SELECT idarea FROM area WHERE nombre = %s),
+                                usuario.pais = (SELECT idpais FROM pais WHERE nombre = %s)
+                        WHERE usuario.idusuario = %s;
+                    """,
+                (
+                    self.m_textCtrlNombreCompleto.GetValue(),
+                    self.m_textCtrlActiveDirectory.GetValue(),
+                    self.m_comboBoxArea.GetValue(),
+                    self.m_comboBoxPais.GetValue(),
+                    config.IDusuarioSeleccionado,
+                ),
+            )
+            from pyad import pyad
+            usuario = pyad.from_cn(self.m_textCtrlActiveDirectory.GetValue())
+            usuario.update_attribute("givenName", self.m_textCtrlNombreDePila.GetValue())
+            usuario.update_attribute("initials", self.m_textCtrlIniciales.GetValue())
+            usuario.update_attribute("sn", self.m_textCtrlApellidos.GetValue())
+            # usuario.update()
+            wx.MessageBox("El usuario ha sido modificado correctamente.", "Éxito", wx.OK | wx.ICON_INFORMATION)
+        except Exception as e:
+            wx.MessageBox("Ocurrió un error al modificar el usuario: {}".format(str(e)), "Error", wx.OK | wx.ICON_ERROR)
         self.Regresar(self)
 
     def traerDatosParaFormulario(self, event):
+
         # llenar comboBox Pais
         datosPais = config.ejecutarQueryLectura("""SELECT nombre AS pais FROM pais;""")
         if datosPais:
@@ -73,6 +84,14 @@ class ControlAccesosmodificarUsuario(UI.modificarUsuario):
 
         index_area = self.m_comboBoxArea.FindString(datosUsuario[0]["area"])
         self.m_comboBoxArea.SetSelection(index_area)
+
+        #rellenar datos desde Active directory
+        from pyad import pyad
+
+        usuarioPyad = pyad.from_cn(datosUsuario[0]["usuarioAD"])
+        self.m_textCtrlNombreDePila.SetValue(usuarioPyad.get_attribute("givenName")[0])
+        self.m_textCtrlIniciales.SetValue(usuarioPyad.get_attribute("initials")[0])
+        self.m_textCtrlApellidos.SetValue(usuarioPyad.get_attribute("sn")[0])
 
     def moverSiguiente(self, event):
         if event.GetKeyCode() == wx.WXK_TAB:
