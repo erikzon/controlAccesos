@@ -67,4 +67,6 @@ class ControlAccesosautenticacionFrame(UI.autenticacionFrame):
                 self.m_textCtrlContrasena.SetFocus()
             elif focus_ctrl is self.m_textCtrlContrasena:
                 self.m_textCtrlUsuario.SetFocus()
+        elif event.GetKeyCode() == 13:
+            self.iniciarSesion(self)
         event.Skip()

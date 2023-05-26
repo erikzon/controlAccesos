@@ -168,6 +168,7 @@ class listadoFrame ( wx.Frame ):
         self.m_button4CerrarSesion.Bind( wx.EVT_BUTTON, self.CerrarSesion )
         self.m_comboBoxPais.Bind( wx.EVT_COMBOBOX, self.m_comboBoxPaisOnCombobox )
         self.m_comboBoxArea.Bind( wx.EVT_COMBOBOX, self.m_comboBoxAreaOnCombobox )
+        self.m_textCtrlBusqueda.Bind( wx.EVT_CHAR_HOOK, self.detectarEnter )
         self.m_buttonBuscar.Bind( wx.EVT_BUTTON, self.Buscar )
         self.m_buttonPanelControl.Bind( wx.EVT_BUTTON, self.panelDeControl )
         self.m_dataViewListCtrlUsuarios.Bind( wx.dataview.EVT_DATAVIEW_ITEM_ACTIVATED, self.mostrarDetalle, id = wx.ID_ANY )
@@ -187,6 +188,9 @@ class listadoFrame ( wx.Frame ):
         event.Skip()
 
     def m_comboBoxAreaOnCombobox( self, event ):
+        event.Skip()
+
+    def detectarEnter( self, event ):
         event.Skip()
 
     def Buscar( self, event ):

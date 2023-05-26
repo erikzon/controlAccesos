@@ -12,6 +12,7 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
 
     # Handlers for listadoFrame events.
     def listarUsuarios(self, event):
+        self.m_textCtrlBusqueda.SetFocus()
         result = config.ejecutarQueryLectura(
             """SELECT u.idusuario, u.nombreCompleto, u.usuarioAD, a.nombre AS area, p.nombre AS pais
 		FROM usuario u
@@ -138,6 +139,7 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
     def m_comboBoxPaisOnCombobox(self, event):
         self.Buscar(self)
 
-    def enterPresionado(self, event):
-        # self.Buscar(self)
-        pass
+    def detectarEnter(self, event):
+        if event.GetKeyCode() == 13:
+            self.Buscar(self)
+        event.Skip()
