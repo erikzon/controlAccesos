@@ -137,3 +137,7 @@ class ControlAccesoslistadoFrame(UI.listadoFrame):
 
     def m_comboBoxPaisOnCombobox(self, event):
         self.Buscar(self)
+
+    def enterPresionado(self, event):
+        # self.Buscar(self)
+        pass

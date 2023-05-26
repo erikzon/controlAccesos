@@ -329,6 +329,7 @@
                                 <property name="window_extra_style"></property>
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
+                                <event name="OnCharHook">moverSiguiente</event>
                             </object>
                         </object>
                         <object class="gbsizeritem" expanded="1">
@@ -460,6 +461,7 @@
                                 <property name="window_extra_style"></property>
                                 <property name="window_name"></property>
                                 <property name="window_style"></property>
+                                <event name="OnCharHook">moverSiguiente</event>
                             </object>
                         </object>
                         <object class="gbsizeritem" expanded="1">
@@ -2050,6 +2052,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -2245,6 +2248,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -2312,6 +2316,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -2443,6 +2448,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -2616,7 +2622,7 @@
                         <property name="minimize_button">0</property>
                         <property name="minimum_size"></property>
                         <property name="moveable">1</property>
-                        <property name="name">m_textCtrl8</property>
+                        <property name="name">m_textCtrlApellidos</property>
                         <property name="pane_border">1</property>
                         <property name="pane_position"></property>
                         <property name="pane_size"></property>
@@ -2638,6 +2644,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                     </object>
                 </object>
                 <object class="gbsizeritem" expanded="0">
@@ -3229,6 +3236,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                         <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
@@ -3361,6 +3369,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                         <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
@@ -3493,6 +3502,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                         <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
@@ -3625,6 +3635,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                         <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>
@@ -3757,6 +3768,7 @@
                         <property name="window_extra_style"></property>
                         <property name="window_name"></property>
                         <property name="window_style"></property>
+                        <event name="OnCharHook">moverSiguiente</event>
                         <event name="OnText">validarBotonCrear</event>
                     </object>
                 </object>

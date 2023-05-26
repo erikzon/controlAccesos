@@ -76,3 +76,18 @@ class ControlAccesospanelDeControl(UI.panelDeControl):
         enable_button = all(len(text_ctrl.GetValue()) > 1 for text_ctrl in text_ctrls)
 
         self.m_buttonCrearUsuario.Enable(enable_button)
+
+    def moverSiguiente(self, event):
+        if event.GetKeyCode() == wx.WXK_TAB:
+            focus_ctrl = self.FindFocus()
+            if focus_ctrl is self.m_textCtrlNombreCompleto:
+                self.m_textCtrlActiveDirectory.SetFocus()
+            elif focus_ctrl is self.m_textCtrlActiveDirectory:
+                self.m_textCtrlNombreDePila.SetFocus()
+            elif focus_ctrl is self.m_textCtrlNombreDePila:
+                self.m_textCtrlIniciales.SetFocus()
+            elif focus_ctrl is self.m_textCtrlIniciales:
+                self.m_textCtrlApellidos.SetFocus()
+            elif focus_ctrl is self.m_textCtrlApellidos:
+                self.m_textCtrlNombreCompleto.SetFocus()
+        event.Skip()

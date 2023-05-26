@@ -59,3 +59,12 @@ class ControlAccesosautenticacionFrame(UI.autenticacionFrame):
 
     def ocultar_mensaje(self):
         self.m_staticTextMensajeError.SetLabelText("")
+
+    def moverSiguiente(self, event):
+        if event.GetKeyCode() == wx.WXK_TAB:
+            focus_ctrl = self.FindFocus()
+            if focus_ctrl is self.m_textCtrlUsuario:
+                self.m_textCtrlContrasena.SetFocus()
+            elif focus_ctrl is self.m_textCtrlContrasena:
+                self.m_textCtrlUsuario.SetFocus()
+        event.Skip()

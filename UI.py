@@ -74,6 +74,8 @@ class autenticacionFrame ( wx.Frame ):
 
         # Connect Events
         self.Bind( wx.EVT_SHOW, self.obtenerDatosMySQL )
+        self.m_textCtrlUsuario.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
+        self.m_textCtrlContrasena.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
         self.m_buttonLogin.Bind( wx.EVT_BUTTON, self.iniciarSesion )
 
     def __del__( self ):
@@ -83,6 +85,10 @@ class autenticacionFrame ( wx.Frame ):
     # Virtual event handlers, override them in your derived class
     def obtenerDatosMySQL( self, event ):
         event.Skip()
+
+    def moverSiguiente( self, event ):
+        event.Skip()
+
 
     def iniciarSesion( self, event ):
         event.Skip()
@@ -340,8 +346,8 @@ class modificarUsuario ( wx.Frame ):
 
         gbSizer6.Add( self.m_staticText17, wx.GBPosition( 3, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-        self.m_textCtrl8 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
-        gbSizer6.Add( self.m_textCtrl8, wx.GBPosition( 3, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+        self.m_textCtrlApellidos = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
+        gbSizer6.Add( self.m_textCtrlApellidos, wx.GBPosition( 3, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
         self.m_staticText14 = wx.StaticText( self, wx.ID_ANY, u"Pais:", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_staticText14.Wrap( -1 )
@@ -370,6 +376,11 @@ class modificarUsuario ( wx.Frame ):
 
         # Connect Events
         self.Bind( wx.EVT_SHOW, self.traerDatosParaFormulario )
+        self.m_textCtrlNombreCompleto.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
+        self.m_textCtrlIniciales.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
+        self.m_textCtrlActiveDirectory.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
+        self.m_textCtrlNombreDePila.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
+        self.m_textCtrlApellidos.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
         self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.Regresar )
         self.m_buttonGuardarCambios.Bind( wx.EVT_BUTTON, self.guardarCambios )
 
@@ -380,6 +391,13 @@ class modificarUsuario ( wx.Frame ):
     # Virtual event handlers, override them in your derived class
     def traerDatosParaFormulario( self, event ):
         event.Skip()
+
+    def moverSiguiente( self, event ):
+        event.Skip()
+
+
+
+
 
     def Regresar( self, event ):
         event.Skip()
@@ -483,10 +501,15 @@ class panelDeControl ( wx.Frame ):
 
         # Connect Events
         self.Bind( wx.EVT_SHOW, self.inicializarPanelDeControl )
+        self.m_textCtrlNombreCompleto.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
         self.m_textCtrlNombreCompleto.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_textCtrlActiveDirectory.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
         self.m_textCtrlActiveDirectory.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_textCtrlNombreDePila.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
         self.m_textCtrlNombreDePila.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_textCtrlIniciales.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
         self.m_textCtrlIniciales.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_textCtrlApellidos.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
         self.m_textCtrlApellidos.Bind( wx.EVT_TEXT, self.validarBotonCrear )
         self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.Regresar )
         self.m_buttonCrearUsuario.Bind( wx.EVT_BUTTON, self.CrearUsuario )
@@ -499,8 +522,15 @@ class panelDeControl ( wx.Frame ):
     def inicializarPanelDeControl( self, event ):
         event.Skip()
 
+    def moverSiguiente( self, event ):
+        event.Skip()
+
     def validarBotonCrear( self, event ):
         event.Skip()
+
+
+
+
 
 
 
