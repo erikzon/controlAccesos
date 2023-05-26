@@ -1,6 +1,6 @@
 # Python
 
-### Creando un venv con version de python especifico
+## Creando un venv con version de python especifico
 
 Esta herramienta fue desarrollada en python 3.7 debido a que ciertas dependencias a la fecha de su desarrollo no funcionan en versiones posteriores de python.
 
@@ -16,7 +16,17 @@ este env se activa con:
 env\Scripts\activate.bat
 ```
 
-## Pip necesarios
+## Crear EXE utilizando pyinstaller
+
+```bash
+pip install pyinstaller
+```
+
+```bash
+pyinstaller Main.py
+```
+
+## Pip necesarios para de sarrollo
 
 ### instalar dependencias con el archivo requirements.txt
 
