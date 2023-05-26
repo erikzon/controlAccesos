@@ -417,7 +417,7 @@ class modificarUsuario ( wx.Frame ):
 class panelDeControl ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Panel de Control", pos = wx.DefaultPosition, size = wx.Size( 500,306 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Panel de Control", pos = wx.DefaultPosition, size = wx.Size( 500,369 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
@@ -489,13 +489,21 @@ class panelDeControl ( wx.Frame ):
         self.m_comboBoxPais = wx.ComboBox( self, wx.ID_ANY, u"Guatemala", wx.DefaultPosition, wx.DefaultSize, m_comboBoxPaisChoices, 0 )
         gbSizer6.Add( self.m_comboBoxPais, wx.GBPosition( 6, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
+        self.m_staticText27 = wx.StaticText( self, wx.ID_ANY, u"Contraseña:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText27.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText27, wx.GBPosition( 7, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+        self.m_textCtrlContrasena = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), wx.TE_PASSWORD )
+        gbSizer6.Add( self.m_textCtrlContrasena, wx.GBPosition( 7, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
         self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Volver", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer6.Add( self.m_buttonRegresar, wx.GBPosition( 7, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_BOTTOM, 5 )
+        gbSizer6.Add( self.m_buttonRegresar, wx.GBPosition( 9, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_BOTTOM, 5 )
 
         self.m_buttonCrearUsuario = wx.Button( self, wx.ID_ANY, u"Crear y proceder a modificar accesos", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_buttonCrearUsuario.Enable( False )
 
-        gbSizer6.Add( self.m_buttonCrearUsuario, wx.GBPosition( 7, 1 ), wx.GBSpan( 1, 3 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
+        gbSizer6.Add( self.m_buttonCrearUsuario, wx.GBPosition( 9, 1 ), wx.GBSpan( 1, 3 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
 
 
         self.SetSizer( gbSizer6 )

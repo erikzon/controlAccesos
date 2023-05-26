@@ -72,19 +72,20 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
                 if isinstance(control, wx.CheckBox):
                     control.Enable(False)
 
-        # from pyad import pyad
-        # user = pyad.from_cn(config.usuarioSeleccionado)
-        # status = user.get_user_account_control_settings()
-        # if status["ACCOUNTDISABLE"]:
-        #     self.m_checkBoxToggleActiveDirectory.SetValue(False)
-        #     self.m_checkBoxToggleActiveDirectory.SetLabel(
-        #         "Usuario Deshabilitado en Active Directory"
-        #     )
-        # else:
-        #     self.m_checkBoxToggleActiveDirectory.SetValue(True)
-        #     self.m_checkBoxToggleActiveDirectory.SetLabel(
-        #         "Usuario Habilitado en Active Directory"
-        #     )
+        # obtener estado actual en active directory para mostrar un checkbox consistente
+        from pyad import pyad
+        user = pyad.from_cn(config.usuarioSeleccionado)
+        status = user.get_user_account_control_settings()
+        if status["ACCOUNTDISABLE"]:
+            self.m_checkBoxToggleActiveDirectory.SetValue(False)
+            self.m_checkBoxToggleActiveDirectory.SetLabel(
+                "Usuario Deshabilitado en Active Directory"
+            )
+        else:
+            self.m_checkBoxToggleActiveDirectory.SetValue(True)
+            self.m_checkBoxToggleActiveDirectory.SetLabel(
+                "Usuario Habilitado en Active Directory"
+            )
 
     def regresar(self, event):
         from ControlAccesoslistadoFrame import ControlAccesoslistadoFrame
@@ -95,19 +96,19 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
         pass
 
     def toggleActiveDirectory(self, event):
-        # from pyad import pyad
-        # user = pyad.from_cn(config.usuarioSeleccionado)
-        # status = user.get_user_account_control_settings()
-        # if status["ACCOUNTDISABLE"]:
-        #     user.enable()
-        #     self.m_checkBoxToggleActiveDirectory.SetLabel(
-        #         "Usuario Deshabilitado en Active Directory"
-        #     )
-        # else:
-        #     user.disable()
-        #     self.m_checkBoxToggleActiveDirectory.SetLabel(
-        #         "Usuario Habilitado en Active Directory"
-        #     )
+        from pyad import pyad
+        user = pyad.from_cn(config.usuarioSeleccionado)
+        status = user.get_user_account_control_settings()
+        if status["ACCOUNTDISABLE"]:
+            user.enable()
+            self.m_checkBoxToggleActiveDirectory.SetLabel(
+                "Usuario Deshabilitado en Active Directory"
+            )
+        else:
+            user.disable()
+            self.m_checkBoxToggleActiveDirectory.SetLabel(
+                "Usuario Habilitado en Active Directory"
+            )
         pass
 
     def editarUsuario(self, event):
@@ -133,6 +134,6 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
             
             wx.MessageBox("El usuario ha sido eliminado correctamente.", "Éxito", wx.OK | wx.ICON_INFORMATION)
         except Exception as e:
-            print("Ocurrió un error al intentar eliminar el usuario de active directory:", str(e))
+            wx.MessageBox("Ocurrió un error al eliminar el usuario: {}".format(str(e)), "Error", wx.OK | wx.ICON_ERROR)
 
         self.regresar(self)
