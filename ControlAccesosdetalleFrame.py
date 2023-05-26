@@ -62,6 +62,7 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
         )
         self.m_staticText9NombreCopleto.SetLabelText(datosUsuario[0]["nombreCompleto"])
         self.m_staticTextNombreUsuario.SetLabelText(datosUsuario[0]["usuarioAD"])
+        config.usuario_seleccionado = datosUsuario[0]["usuarioAD"]
 
         # si no es admin deshabilitar los checkbox y no permitir eliminar y editar un usuario:
         if not config.admin:
@@ -117,9 +118,21 @@ class ControlAccesosdetalleFrame(UI.detalleFrame):
         frame.Show(True)
 
     def eliminarUsuario(self, event):
-        config.ejecutarQueryDelete(
+        try:
+            from pyad import pyad
+            # Buscar el usuario por su nombre común (cn)
+            user = pyad.from_cn(config.usuario_seleccionado)
+            
+            # Eliminar el usuario
+            user.delete()
+
+            config.ejecutarQueryDelete(
             """DELETE FROM usuario WHERE idusuario = %s;""",
             config.IDusuarioSeleccionado,
-        )
+            )
+            
+            wx.MessageBox("El usuario ha sido eliminado correctamente.", "Éxito", wx.OK | wx.ICON_INFORMATION)
+        except Exception as e:
+            print("Ocurrió un error al intentar eliminar el usuario de active directory:", str(e))
 
         self.regresar(self)
