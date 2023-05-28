@@ -417,7 +417,7 @@ class modificarUsuario ( wx.Frame ):
 class panelDeControl ( wx.Frame ):
 
     def __init__( self, parent ):
-        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Panel de Control", pos = wx.DefaultPosition, size = wx.Size( 500,369 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+        wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Panel de Control", pos = wx.DefaultPosition, size = wx.Size( 491,516 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
         self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
         self.SetBackgroundColour( wx.Colour( 243, 243, 243 ) )
@@ -497,13 +497,52 @@ class panelDeControl ( wx.Frame ):
         self.m_textCtrlContrasena = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), wx.TE_PASSWORD )
         gbSizer6.Add( self.m_textCtrlContrasena, wx.GBPosition( 7, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
 
-        self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Volver", wx.DefaultPosition, wx.DefaultSize, 0 )
-        gbSizer6.Add( self.m_buttonRegresar, wx.GBPosition( 9, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_BOTTOM, 5 )
+        self.m_staticline1 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        gbSizer6.Add( self.m_staticline1, wx.GBPosition( 9, 0 ), wx.GBSpan( 1, 4 ), wx.EXPAND |wx.ALL, 5 )
 
-        self.m_buttonCrearUsuario = wx.Button( self, wx.ID_ANY, u"Crear y proceder a modificar accesos", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText28 = wx.StaticText( self, wx.ID_ANY, u"CREAR PERMISO", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText28.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText28, wx.GBPosition( 10, 0 ), wx.GBSpan( 1, 4 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+        self.m_staticText29 = wx.StaticText( self, wx.ID_ANY, u"Nombre:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText29.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText29, wx.GBPosition( 11, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
+
+        self.m_textCtrlNombreNuevoPermiso = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 200,-1 ), 0 )
+        gbSizer6.Add( self.m_textCtrlNombreNuevoPermiso, wx.GBPosition( 11, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_buttonCrearPermiso = wx.Button( self, wx.ID_ANY, u"Crear Permiso", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer6.Add( self.m_buttonCrearPermiso, wx.GBPosition( 11, 2 ), wx.GBSpan( 1, 2 ), wx.ALL, 5 )
+
+        self.m_staticline2 = wx.StaticLine( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LI_HORIZONTAL )
+        gbSizer6.Add( self.m_staticline2, wx.GBPosition( 12, 0 ), wx.GBSpan( 1, 4 ), wx.EXPAND|wx.ALL, 5 )
+
+        self.m_staticText30 = wx.StaticText( self, wx.ID_ANY, u"ELIMINAR PERMISO", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText30.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText30, wx.GBPosition( 13, 0 ), wx.GBSpan( 1, 4 ), wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+        self.m_staticText31 = wx.StaticText( self, wx.ID_ANY, u"Seleccione un permiso:", wx.DefaultPosition, wx.DefaultSize, 0 )
+        self.m_staticText31.Wrap( -1 )
+
+        gbSizer6.Add( self.m_staticText31, wx.GBPosition( 14, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
+
+        m_comboBoxPermisosChoices = []
+        self.m_comboBoxPermisos = wx.ComboBox( self, wx.ID_ANY, u"-", wx.DefaultPosition, wx.Size( 200,-1 ), m_comboBoxPermisosChoices, 0 )
+        gbSizer6.Add( self.m_comboBoxPermisos, wx.GBPosition( 14, 1 ), wx.GBSpan( 1, 1 ), wx.ALL, 5 )
+
+        self.m_buttonEliminarPermiso = wx.Button( self, wx.ID_ANY, u"Eliminar Permiso", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer6.Add( self.m_buttonEliminarPermiso, wx.GBPosition( 14, 2 ), wx.GBSpan( 1, 2 ), wx.ALL, 5 )
+
+        self.m_buttonRegresar = wx.Button( self, wx.ID_ANY, u"Volver", wx.DefaultPosition, wx.DefaultSize, 0 )
+        gbSizer6.Add( self.m_buttonRegresar, wx.GBPosition( 15, 0 ), wx.GBSpan( 1, 1 ), wx.ALL|wx.ALIGN_BOTTOM, 5 )
+
+        self.m_buttonCrearUsuario = wx.Button( self, wx.ID_ANY, u"Crear usuario y proceder a modificar accesos", wx.DefaultPosition, wx.DefaultSize, 0 )
         self.m_buttonCrearUsuario.Enable( False )
 
-        gbSizer6.Add( self.m_buttonCrearUsuario, wx.GBPosition( 9, 1 ), wx.GBSpan( 1, 3 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
+        gbSizer6.Add( self.m_buttonCrearUsuario, wx.GBPosition( 8, 0 ), wx.GBSpan( 1, 4 ), wx.ALL|wx.ALIGN_RIGHT, 5 )
 
 
         self.SetSizer( gbSizer6 )
@@ -523,6 +562,8 @@ class panelDeControl ( wx.Frame ):
         self.m_textCtrlIniciales.Bind( wx.EVT_TEXT, self.validarBotonCrear )
         self.m_textCtrlApellidos.Bind( wx.EVT_CHAR_HOOK, self.moverSiguiente )
         self.m_textCtrlApellidos.Bind( wx.EVT_TEXT, self.validarBotonCrear )
+        self.m_buttonCrearPermiso.Bind( wx.EVT_BUTTON, self.crearPermiso )
+        self.m_buttonEliminarPermiso.Bind( wx.EVT_BUTTON, self.eliminarPermiso )
         self.m_buttonRegresar.Bind( wx.EVT_BUTTON, self.Regresar )
         self.m_buttonCrearUsuario.Bind( wx.EVT_BUTTON, self.CrearUsuario )
 
@@ -547,6 +588,12 @@ class panelDeControl ( wx.Frame ):
 
 
 
+
+    def crearPermiso( self, event ):
+        event.Skip()
+
+    def eliminarPermiso( self, event ):
+        event.Skip()
 
     def Regresar( self, event ):
         event.Skip()

@@ -1,0 +1,27 @@
+<<<<<<<<<<<<<<<<<<<AGREGAR TODOS LOS ACCESOS A UN USUARIO NUEVO>>>>>>>>>>>>>>>
+DELIMITER //
+
+CREATE TRIGGER after_insert_usuario
+AFTER INSERT ON usuario
+FOR EACH ROW
+BEGIN
+    INSERT INTO usuario_acceso (idusuario, id_acceso, valor_acceso)
+    SELECT NEW.idusuario, id_acceso, 0
+    FROM (SELECT DISTINCT id_acceso FROM acceso) AS temp;
+END //
+
+DELIMITER ;
+
+<<<<<<<<<<AGREGAR EL REGISTRO COMO FALSE CUANDO SE CREA UN NUEVO ACCESO>>>>>>>>>>>>>
+DELIMITER //
+
+CREATE TRIGGER after_insert_acceso
+AFTER INSERT ON acceso
+FOR EACH ROW
+BEGIN
+    INSERT INTO usuario_acceso (idusuario, id_acceso, valor_acceso)
+    SELECT idusuario, NEW.id_acceso, 0
+    FROM (SELECT DISTINCT idusuario FROM usuario) AS temp;
+END //
+
+DELIMITER ;

@@ -28,6 +28,15 @@ class ControlAccesospanelDeControl(UI.panelDeControl):
 		else:
 			print("Error al listar Combobox area")
 		pass
+
+	# llenar comboBox Area
+		datosPermisos = config.ejecutarQueryLectura("""SELECT nombre_acceso FROM acceso;""")
+		if datosPermisos:
+			for j, item in enumerate(datosPermisos):
+				self.m_comboBoxPermisos.Append(item["nombre_acceso"])
+		else:
+			print("Error al listar Combobox accesos")
+		pass
 		
 
 	def Regresar(self, event):
@@ -116,3 +125,42 @@ class ControlAccesospanelDeControl(UI.panelDeControl):
 			elif focus_ctrl is self.m_textCtrlApellidos:
 				self.m_textCtrlNombreCompleto.SetFocus()
 		event.Skip()
+
+	def eliminarPermiso(self, event):
+		try:
+			config.ejecutarQueryDelete(
+			"""DELETE FROM acceso WHERE nombre_acceso = %s;""",
+			self.m_comboBoxPermisos.GetValue(),
+			)
+			
+			wx.MessageBox("El permiso ha sido eliminado correctamente.", "Éxito", wx.OK | wx.ICON_INFORMATION)
+				# llenar comboBox Area
+			datosPermisos = config.ejecutarQueryLectura("""SELECT nombre_acceso FROM acceso;""")
+			if datosPermisos:
+				for j, item in enumerate(datosPermisos):
+					self.m_comboBoxPermisos.Append(item["nombre_acceso"])
+			else:
+				print("Error al listar Combobox accesos")
+			pass
+		except Exception as e:
+			wx.MessageBox("Ocurrió un error al eliminar el permiso: {}".format(str(e)), "Error", wx.OK | wx.ICON_ERROR)
+
+
+	def crearPermiso(self, event):
+		config.ejecutarQueryInsert(
+			"""
+				INSERT INTO acceso (nombre_acceso) VALUES (%s);
+			""",
+			(
+				self.m_textCtrlNombreNuevoPermiso.GetValue(),
+			),
+		)
+		wx.MessageBox("El permiso ha sido creado correctamente.", "Éxito", wx.OK | wx.ICON_INFORMATION)
+			# llenar comboBox Area
+		datosPermisos = config.ejecutarQueryLectura("""SELECT nombre_acceso FROM acceso;""")
+		if datosPermisos:
+			for j, item in enumerate(datosPermisos):
+				self.m_comboBoxPermisos.Append(item["nombre_acceso"])
+		else:
+			print("Error al listar Combobox accesos")
+		pass
