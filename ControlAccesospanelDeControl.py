@@ -134,7 +134,8 @@ class ControlAccesospanelDeControl(UI.panelDeControl):
 			)
 			
 			wx.MessageBox("El permiso ha sido eliminado correctamente.", "Éxito", wx.OK | wx.ICON_INFORMATION)
-				# llenar comboBox Area
+			# llenar comboBox Area
+			self.m_comboBoxPermisos.Clear()
 			datosPermisos = config.ejecutarQueryLectura("""SELECT nombre_acceso FROM acceso;""")
 			if datosPermisos:
 				for j, item in enumerate(datosPermisos):
@@ -156,7 +157,8 @@ class ControlAccesospanelDeControl(UI.panelDeControl):
 			),
 		)
 		wx.MessageBox("El permiso ha sido creado correctamente.", "Éxito", wx.OK | wx.ICON_INFORMATION)
-			# llenar comboBox Area
+		# llenar comboBox Area
+		self.m_comboBoxPermisos.Clear()
 		datosPermisos = config.ejecutarQueryLectura("""SELECT nombre_acceso FROM acceso;""")
 		if datosPermisos:
 			for j, item in enumerate(datosPermisos):
@@ -164,3 +166,4 @@ class ControlAccesospanelDeControl(UI.panelDeControl):
 		else:
 			print("Error al listar Combobox accesos")
 		pass
+		self.m_textCtrlNombreNuevoPermiso.SetValue('')
